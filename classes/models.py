@@ -1,7 +1,7 @@
 from django.db import models as m
 
 class Class(m.Model):
-    studio = m.ForeignKey(Studio, on_delete=m.SET_NULL, related_name='studio')
+    studio = m.ForeignKey('Studio', on_delete=m.SET_NULL, related_name='studio')
     name = m.CharField()
     description = m.TextField()
     coach = m.CharField()
