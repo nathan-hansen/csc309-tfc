@@ -1,10 +1,10 @@
 from django.db import models as m
-from django.contrib.gis.db import models as gm
 
 class Studio(m.Model):
     name = m.CharField(max_length=250)
     address = m.CharField(max_length=250)
-    location = gm.PointField()
+    latitude = m.FloatField()
+    longitude = m.FloatField()
     postal_code = m.CharField(max_length=250)
     phone_number = m.IntegerField()
 
