@@ -1,4 +1,4 @@
-table Account {
+table Account [headercolor: #2D6512] {
   id int [pk]
   first_name StringField
   last_name StringField
@@ -8,7 +8,7 @@ table Account {
   current_subscription ForeignKey
 }
 
-table Studio {
+table Studio [headercolor: #4B82B0] {
   id int [pk]
   name StringField
   address StringField
@@ -19,20 +19,20 @@ table Studio {
   // images
 }
 
-table StudioImage {
+table StudioImage [headercolor: #4B82B0] {
   studio ForeignKey
   image ImageField
 }
 Ref: StudioImage.studio > Studio.id
 
-table Amenities {
+table Amenities [headercolor: #4B82B0] {
   studio ForeignKey
   type StringField
   quantity int
 }
 Ref: Amenities.studio > Studio.id
 
-table Class {
+table Class [headercolor: #EB801B] {
   id int [pk]
   studio ForeignKey
   name StringField
@@ -44,7 +44,7 @@ table Class {
 }
 Ref: Class.studio > Studio.id
 
-table Keywords {
+table Keywords [headercolor: #EB801B] {
   keyword StringField
   class ForeignKey
 }
@@ -52,7 +52,7 @@ Ref: Keywords.class > Class.id
 
 // Use this table if you want to cancel 
 // one time in a recursive class
-table ClassTimeTable {
+table ClassTimeTable [headercolor: #EB801B] {
   id int [pk]
   class ForeignKey
   time DateTimeField
@@ -60,7 +60,7 @@ table ClassTimeTable {
 }
 Ref: ClassTimeTable.class > Class.id
 
-table SubscriptionPlan {
+table SubscriptionPlan [headercolor: #79AD51] {
   id int [pk]
   payment DecimalField
   // one of "monthly", "yearly", etc
@@ -68,22 +68,22 @@ table SubscriptionPlan {
   interval StringField
 }
 
-table CurrentSubscription {
+table CurrentSubscription [headercolor: #126E7A] {
   id int [pk]
   plan ForeignKey
   expiration DateTimeField
 }
-Ref: CurrentSubscription.plan > SubscriptionPlan.id
+Ref: CurrentSubscription.plan - SubscriptionPlan.id
 
-table Payment {
+table PaymentInfo [headercolor: #24BAB1] {
   account ForeignKey
   card_number IntegerField
   card_expiry IntegerField
 }
-Ref: Payment.account > Account.id
-Ref: Account.current_subscription > CurrentSubscription.id
+Ref: PaymentInfo.account - Account.id
+Ref: Account.current_subscription - CurrentSubscription.id
 
-table PaymentHistory {
+table PaymentHistory [headercolor: #24BAB1] {
   id int [pk]
   account ForeignKey
   timestamp DateTimeField
@@ -93,7 +93,7 @@ table PaymentHistory {
 }
 Ref: PaymentHistory.account > Account.id
 
-table EnrollClass {
+table EnrollClass [headercolor: #DE65C3] {
   account ForeignKey
   classtime ForeignKey
 }
