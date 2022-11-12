@@ -1,4 +1,4 @@
-table User {
+table Account {
   id int [pk]
   first_name StringField
   last_name StringField
@@ -27,7 +27,7 @@ Ref: StudioImage.studio > Studio.id
 
 table Amenities {
   studio ForeignKey
-  type varchar
+  type StringField
   quantity int
 }
 Ref: Amenities.studio > Studio.id
@@ -40,13 +40,25 @@ table Class {
   coach StringField
   // keywords type could change...
   // assess during implementation
-  keywords TextField
-  capacity IntegerField
-  start_time DateTimeField
-  // this could be end time instead
-  duration DurationField 
+  duration DurationField
 }
 Ref: Class.studio > Studio.id
+
+table Keywords {
+  keyword StringField
+  class ForeignKey
+}
+Ref: Keywords.class > Class.id
+
+// Use this table if you want to cancel 
+// one time in a recursive class
+table ClassTimeTable {
+  id int [pk]
+  class ForeignKey
+  time DateTimeField
+  spotleft IntegerField
+}
+Ref: ClassTimeTable.class > Class.id
 
 table Subscription {
   id int [pk]
@@ -58,23 +70,29 @@ table Subscription {
 
 table Payment {
   id int [pk]
-  user ForeignKey
+  account ForeignKey
   card_number IntegerField
   card_expiry IntegerField
   card_security IntegerField
   current_subscription ForeignKey
 }
-Ref: Payment.user > User.id
+Ref: Payment.account > Account.id
 Ref: Payment.current_subscription > Subscription.id
 
 table PaymentHistory {
   id int [pk]
-  user ForeignKey
+  account ForeignKey
   timestamp DateTimeField
   amount DecimalField
   card_number IntegerField
   card_expiry IntegerField
   card_security IntegerField
 }
-Ref: PaymentHistory.user > User.id
+Ref: PaymentHistory.account > Account.id
 
+table EnrollClass {
+  account ForeignKey
+  classtime ForeignKey
+}
+Ref: EnrollClass.account > Account.id
+Ref: EnrollClass.classtime > ClassTimeTable.id
