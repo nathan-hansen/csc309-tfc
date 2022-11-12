@@ -48,19 +48,19 @@ Ref: Class.studio > Studio.id
 
 table Keywords [headercolor: #EB801B] {
   keyword StringField
-  class ForeignKey
+  classid ForeignKey
 }
-Ref: Keywords.class > Class.id
+Ref: Keywords.classid > Class.id
 
 // Use this table if you want to cancel 
 // one time in a recursive class
 table ClassTimeTable [headercolor: #EB801B] {
   id int [pk]
-  class ForeignKey
+  classid ForeignKey
   time DateTimeField
   spotleft IntegerField
 }
-Ref: ClassTimeTable.class > Class.id
+Ref: ClassTimeTable.classid > Class.id
 
 table SubscriptionPlan [headercolor: #79AD51] {
   id int [pk]
