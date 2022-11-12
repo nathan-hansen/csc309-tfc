@@ -5,7 +5,7 @@ table Account {
   email StringField
   avatar ImageField
   phone_number StringField
-  
+  current_subscription ForeignKey
 }
 
 table Studio {
@@ -60,7 +60,7 @@ table ClassTimeTable {
 }
 Ref: ClassTimeTable.class > Class.id
 
-table Subscription {
+table SubscriptionPlan {
   id int [pk]
   payment DecimalField
   // one of "monthly", "yearly", etc
@@ -68,16 +68,20 @@ table Subscription {
   interval StringField
 }
 
-table Payment {
+table CurrentSubscription {
   id int [pk]
+  plan ForeignKey
+  expiration DateTimeField
+}
+Ref: CurrentSubscription.plan > SubscriptionPlan.id
+
+table Payment {
   account ForeignKey
   card_number IntegerField
   card_expiry IntegerField
-  card_security IntegerField
-  current_subscription ForeignKey
 }
 Ref: Payment.account > Account.id
-Ref: Payment.current_subscription > Subscription.id
+Ref: Account.current_subscription > CurrentSubscription.id
 
 table PaymentHistory {
   id int [pk]
@@ -86,7 +90,6 @@ table PaymentHistory {
   amount DecimalField
   card_number IntegerField
   card_expiry IntegerField
-  card_security IntegerField
 }
 Ref: PaymentHistory.account > Account.id
 
