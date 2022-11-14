@@ -6,9 +6,16 @@ class Studio(m.Model):
     latitude = m.FloatField()
     longitude = m.FloatField()
     postal_code = m.CharField(max_length=250)
-    phone_number = m.IntegerField()
+    phone_number = m.CharField(max_length=250)
 
 
 class StudioImage(m.Model):
     studio = m.ForeignKey('Studio', on_delete=m.CASCADE, related_name='image')
-    image = m.ImageField()
+    image = m.ImageField(upload_to="studios/")
+
+
+class Amenities(m.Model):
+    studio = m.ForeignKey('Studio', on_delete=m.CASCADE, related_name='amenities')
+    amenity_type = m.CharField(max_length=250)
+    quantity = m.IntegerField()
+
