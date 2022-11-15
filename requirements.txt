@@ -1,4 +1,5 @@
 Django
 djangorestframework
 djangorestframework-simplejwt
+geopy
 Pillow
