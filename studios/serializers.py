@@ -35,6 +35,6 @@ class AmenitiesSerializer(ModelSerializer):
         model = Amenities
         fields = [
                 'studio',
-                'type',
+                'amenity_type',
                 'quantity',
                 ]
