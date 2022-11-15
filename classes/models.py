@@ -22,9 +22,10 @@ class ClassTimeTable(m.Model):
     def check_full(self):
         return self.spotleft != 0
 
+
 class EnrollClass(m.Model):
-    account = m.ForeignKey('Account', on_delete=m.CASCADE, related_name='enroll_class')
-    classtime = m.ForeignKey('classes.ClassTimeTable', on_delete=m.CASCADE, related_name='enroll_class')
+    account = m.ForeignKey('accounts.Account', on_delete=m.CASCADE, related_name='enrollclass')
+    classtime = m.ForeignKey('classes.ClassTimeTable', on_delete=m.CASCADE, related_name='enrollclass')
 
     def enroll(self, account: Account, classtime: ClassTimeTable):
         self.account = account
@@ -33,3 +34,6 @@ class EnrollClass(m.Model):
 
     def check_enroll(self, account: Account, classtime: ClassTimeTable):
         return self.objects.filter(account=account, classtime=classtime).exists()
+
+    def get_user_enroll(self, account: Account):
+        return self.objects.filter(account=account)

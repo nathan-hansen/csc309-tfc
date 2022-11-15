@@ -6,22 +6,28 @@ from rest_framework.views import APIView
 from accounts.models import EnrollClass
 from classes.models import Class, ClassTimeTable
 from classes.serializers import ClassSerializer
-from classes.utils import get_classes_with_spots, get_user_classes
 
+from django.utils import timezone
 
 # Create your views here.
 class ListUpcomingClassView(generics.ListAPIView):
     serializer_class = ClassSerializer
 
     def get_queryset(self):
-        return get_classes_with_spots()
+        # https://stackoverflow.com/questions/19223953/django-filtering-from-other-model
+        return Class.objects. \
+            filter(timetable__spotleft__gte=1). \
+            filter(timetable__time__gte=timezone.now()). \
+                distinct().order_by('timetable__time')
 
 class ListMyClassView(generics.ListAPIView):
     permission_classes = (IsAuthenticated,)
     serializer_class = ClassSerializer
 
     def get_queryset(self):
-        return get_user_classes(self.request.user)
+        return Class.objects. \
+            filter(timetable__enrollclass__account=self.request.user)
+
 
 class ModifyClassView(APIView):
     permission_classes = (IsAuthenticated,)
