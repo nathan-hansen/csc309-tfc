@@ -11,7 +11,3 @@ class CurrentSubscription(m.Model):
     account = m.ForeignKey('Account', on_delete=m.CASCADE, related_name='current_subscription')
     plan = m.ForeignKey('subscriptions.SubscriptionPlan', on_delete=m.CASCADE, related_name='current_subscription')
     expiration = m.DateTimeField()
-
-class EnrollClass(m.Model):
-    account = m.ForeignKey('Account', on_delete=m.CASCADE, related_name='enroll_class')
-    classtime = m.ForeignKey('classes.ClassTimeTable', on_delete=m.CASCADE, related_name='enroll_class')
