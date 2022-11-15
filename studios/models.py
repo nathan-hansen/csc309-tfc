@@ -20,6 +20,7 @@ def extend_sqlite(connection=None, **kwargs):
         cf('greatest', 2, max)
         print('SQLite extended successfully.')
 
+
 class Studio(m.Model):
     name = m.CharField(max_length=250)
     address = m.CharField(max_length=250)
@@ -63,4 +64,5 @@ class Amenities(m.Model):
     quantity = m.IntegerField()
     class Meta:
         verbose_name_plural = "Amenities"
+
 

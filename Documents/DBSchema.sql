@@ -7,7 +7,6 @@ table Account [headercolor: #2D6512] {
   email StringField
   avatar ImageField
   phone_number StringField
-  current_subscription ForeignKey
 }
 
 table Studio [headercolor: #4B82B0] {
@@ -48,30 +47,30 @@ Ref: Class.studio > Studio.id
 
 table Keywords [headercolor: #EB801B] {
   keyword StringField
-  class ForeignKey
+  classid ForeignKey
 }
-Ref: Keywords.class > Class.id
+Ref: Keywords.classid > Class.id
 
 // Use this table if you want to cancel 
 // one time in a recursive class
 table ClassTimeTable [headercolor: #EB801B] {
   id int [pk]
-  class ForeignKey
+  classid ForeignKey
   time DateTimeField
   spotleft IntegerField
 }
-Ref: ClassTimeTable.class > Class.id
+Ref: ClassTimeTable.classid > Class.id
 
 table SubscriptionPlan [headercolor: #79AD51] {
   id int [pk]
   payment DecimalField
   // one of "monthly", "yearly", etc
   // change if more complexity needed
-  interval StringField
+  interval DurationField
 }
 
 table CurrentSubscription [headercolor: #126E7A] {
-  id int [pk]
+  account ForeignKey
   plan ForeignKey
   expiration DateTimeField
 }
@@ -81,9 +80,11 @@ table PaymentInfo [headercolor: #24BAB1] {
   account ForeignKey
   card_number IntegerField
   card_expiry IntegerField
+  cvv IntegerField
+  name_on_card StringField
 }
 Ref: PaymentInfo.account - Account.id
-Ref: Account.current_subscription - CurrentSubscription.id
+Ref: Account.id - CurrentSubscription.account
 
 table PaymentHistory [headercolor: #24BAB1] {
   id int [pk]
