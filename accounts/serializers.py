@@ -43,6 +43,11 @@ class SignupSerializer(serializers.ModelSerializer):
             "password": {"write_only": True, "style": {"input_type": "password"}},
         }
 
+    def validate(self, data):  # override validate function to add custom validation
+        if data['password'] != data['password2']:  # check if pass matches confirm pass
+            raise serializers.ValidationError({"password": "Password fields didn't match."})
+        return data
+
     def create(self, validated_data: dict) -> Account:
         # pop password 2
         validated_data.pop('password2')
