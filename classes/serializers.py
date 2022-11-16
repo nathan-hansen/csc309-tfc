@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
-from classes.models import Class, ClassTimeTable, Keywords
+from accounts.serializers import AccountSerializer
+from classes.models import Class, ClassTimeTable, Keywords, EnrollClass
 
 
 class KeywordsSerializer(serializers.ModelSerializer):
@@ -29,3 +30,11 @@ class ClassSerializer(serializers.ModelSerializer):
         model = Class
         fields = ['name', 'description', 'coach', 'keywords', 'timetable']
 
+
+class EnrollClassSerializer(serializers.ModelSerializer):
+    account = AccountSerializer()
+    classtime = ClassTimeTableSerializer()
+
+    class Meta:
+        model = EnrollClass
+        fields = ['account', 'classtime']

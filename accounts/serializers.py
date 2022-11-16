@@ -1,7 +1,6 @@
 from rest_framework import serializers
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import get_user_model
-from accounts.models import EnrollClass
 from classes.models import ClassTimeTable
 from accounts.models import Account
 
@@ -14,16 +13,6 @@ class AccountSerializer(serializers.ModelSerializer):
         fields = ["username", "first_name", "last_name", "email", "phone_number"]
         read_only_fields = ["password"]
         # not allowed to edit this attribute, so read only, from tutorial code
-
-
-class EnrollClassSerializer(serializers.ModelSerializer):
-    account = AccountSerializer()
-
-    # classtime = ClassTimeTableSerializer()
-
-    class Meta:
-        model = EnrollClass
-        fields = ['account', 'classtime']
 
 
 # based on the tutorial code
