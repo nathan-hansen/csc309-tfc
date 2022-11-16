@@ -1,13 +1,13 @@
-from rest_framework import generics, get_object_or_404
+from django.shortcuts import get_object_or_404
+from django.utils import timezone
+from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from accounts.models import EnrollClass
-from classes.models import Class, ClassTimeTable
+from classes.models import Class, ClassTimeTable, EnrollClass
 from classes.serializers import ClassSerializer
 
-from django.utils import timezone
 
 # Create your views here.
 class ListUpcomingClassView(generics.ListAPIView):

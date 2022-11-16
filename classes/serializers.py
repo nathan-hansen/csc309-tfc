@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from classes.models import Class, ClassTimeTables, Keywords
+from classes.models import Class, ClassTimeTable, Keywords
 
 
 class KeywordsSerializer(serializers.ModelSerializer):
@@ -14,7 +14,7 @@ class ClassTimeTableSerializer(serializers.ModelSerializer):
     Classes must appear in the order of their start time (from now), and the class information must be shown. 
     Past or cancelled classes should not be listed.'''
     class Meta:
-        model = ClassTimeTables
+        model = ClassTimeTable
         fields = ['time', 'spotleft']
 
 
