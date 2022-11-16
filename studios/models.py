@@ -18,7 +18,6 @@ def extend_sqlite(connection=None, **kwargs):
         cf('sin', 1, math.sin)
         cf('least', 2, min)
         cf('greatest', 2, max)
-        print('SQLite extended successfully.')
 
 
 class Studio(m.Model):
