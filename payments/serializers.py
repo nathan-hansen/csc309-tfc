@@ -7,8 +7,8 @@ class PaymentInfoSerializer(serializers.ModelSerializer):
     account = AccountSerializer
 
     class Meta:
-        model = PaymentHistory
-        fields = ['account', 'timestamp', 'card_number', 'card_expiry']
+        model = PaymentInfo
+        fields = ['account', 'name_on_card', 'card_number', 'cvv', 'expiry_date']
 
 
 class PaymentHistorySerializer(serializers.ModelSerializer):

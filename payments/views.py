@@ -7,11 +7,9 @@ from django.utils import timezone
 from django.shortcuts import get_object_or_404
 
 
-# Create your views here.
-
 class CreatePaymentInfoView(CreateAPIView):
     permission_classes = [IsAuthenticated]
-    serializer_class = PaymentInfo
+    serializer_class = PaymentInfoSerializer
 
 
 class PaymentInfoUpdateView(UpdateAPIView):
