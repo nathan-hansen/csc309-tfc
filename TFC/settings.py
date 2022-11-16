@@ -136,6 +136,9 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# media root folder for any images
+# media root folder for any images, gathering uploads
 
 MEDIA_ROOT = BASE_DIR / "images/"
+
+# group all media url
+MEDIA_URL = 'images/'
