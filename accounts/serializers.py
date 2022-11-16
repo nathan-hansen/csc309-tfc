@@ -10,7 +10,7 @@ class AccountSerializer(serializers.ModelSerializer):
     # editing it)
     class Meta:
         model = Account
-        fields = ["username", "first_name", "last_name", "email", "phone_number"]
+        fields = ["username", "first_name", "last_name", "email", "avatar", "phone_number"]
         read_only_fields = ["password"]
         # not allowed to edit this attribute, so read only, from tutorial code
 
@@ -23,7 +23,7 @@ class SignupSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Account  # returns the User model that is active in this project
-        fields = ("username", "password", "password2", "first_name", "last_name", "email", "phone_number")
+        fields = ("username", "password", "password2", "first_name", "last_name", "email", "avatar", "phone_number")
 
         # Specify the input type for password in the sign up, already did for password 2
         # we can also specify the write_only attribute to specify that a field should only be used for writing data
