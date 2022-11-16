@@ -10,7 +10,3 @@ class Account(User):
                                  message="Phone number must be in the format: '+999999999', with a maximum of 15 digits" )
     phone_number = m.CharField(validators=[phone_regex], max_length=250, null=True, blank=True)
 
-class CurrentSubscription(m.Model):
-    account = m.ForeignKey('Account', on_delete=m.CASCADE, related_name='current_subscription')
-    plan = m.ForeignKey('subscriptions.SubscriptionPlan', on_delete=m.CASCADE, related_name='current_subscription')
-    expiration = m.DateTimeField()
