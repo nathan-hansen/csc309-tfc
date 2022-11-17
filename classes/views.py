@@ -12,27 +12,24 @@ from classes.serializers import ClassSerializer, ClassTimeTableSerializer, Enrol
 
 # Create your views here.
 class ListUpcomingClassView(generics.ListAPIView):
-    serializer_class = ClassSerializer
+    serializer_class = ClassTimeTableSerializer
 
     def get_queryset(self):
-        # https://stackoverflow.com/questions/19223953/django-filtering-from-other-model
-        return Class.objects.prefetch_related(
-            Prefetch('timetable',
-            queryset=ClassTimeTable.objects.\
-                filter(time__gte=timezone.now()).\
-                filter(spotleft__gt=0).\
-                order_by('time'),
-            to_attr='timetable_upcoming')
-        )
+        return ClassTimeTable.objects.filter(time__gte=timezone.now()).\
+            filter(spotleft__gt=0).\
+            filter(classid__in=Class.objects.filter(studio=self.kwargs['studio_id'])).\
+            order_by('time')
 
 
 class ListMyClassView(generics.ListAPIView):
     permission_classes = (IsAuthenticated,)
-    serializer_class = ClassSerializer
+    serializer_class = ClassTimeTableSerializer
 
     def get_queryset(self):
-        return Class.objects. \
-            filter(timetable__enrollclass__account=self.request.user)
+        return ClassTimeTable.objects.filter(time__lt=timezone.now()).\
+            filter(classid__in=Class.objects.filter(studio=self.kwargs['studio_id'])).\
+            filter(enrollclass__in=EnrollClass.objects.filter(account=self.request.user)).\
+            order_by('-time')
 
 
 class ModifyClassView(APIView):

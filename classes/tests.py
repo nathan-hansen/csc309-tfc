@@ -1,4 +1,6 @@
 from django.test import TestCase
+from django.utils import timezone
+
 from django.contrib.auth.models import User
 from django.test.client import Client
 from studios.models import Studio
@@ -64,18 +66,33 @@ class TestClasses(TestCase):
         ) for i in range(random.randint(1, 10))]
 
 
-    def test_classes_list(self):
+    def test_classes_upcoming(self):
         self.SetUp()
 
         client = Client()
-        response = client.get('/classes/list/')
+        response = client.get(f'/classes/{self.studio.id}/upcoming/')
         self.assertEqual(response.status_code, 200)
         response_list = json.loads(response.content.decode('utf-8'))
-        print(response_list)
 
         for i in response_list:
-            print(i['name'])
-        print(self.class_future)
-        self.assertEqual(len(response_list), len(self.class_future))
+            self.assertTrue(i['time'] > datetime.datetime.now().strftime('%Y-%m-%d'))
+        
+        self.assertTrue(len(response_list) == len(
+            ClassTimeTable.objects.filter(time__gte=timezone.now()).\
+            filter(spotleft__gt=0).\
+            filter(classid__in=Class.objects.filter(studio=self.studio)))
+        )
+
+    def test_enroll(self):
+        self.SetUp()
+
+        client = Client()
+        user = User.objects.create_user(username='test', password='test')
+        client.login(username='test', password='test')
+
+        # for i in self.class_future:
+
+
+
 
             
