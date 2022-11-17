@@ -5,7 +5,6 @@ from django.http import HttpResponseRedirect
 from django.template.response import TemplateResponse
 
 from classes.models import Class, ClassTimeTable, EnrollClass, Keywords
-from classes.forms import ClassCreateTimeForm
 
 # Register your models here.
 admin.site.register(Keywords)
