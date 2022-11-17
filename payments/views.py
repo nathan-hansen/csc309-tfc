@@ -37,7 +37,7 @@ class ListPaymentUpcoming(ListAPIView):
     serializer_class = PaymentHistorySerializer
 
     def get_queryset(self):
-        # first filter by payments of logged-in user, then filter for past payments
+        # first filter by payments of logged-in user, then filter for future payments
         user_queryset = PaymentHistory.objects.filter(account=self.request.user).filter(timestamp__gte=timezone.now())
         # then order by most recent and return
         return user_queryset.order_by('timestamp')
