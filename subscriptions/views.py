@@ -25,7 +25,7 @@ class UpdateSubscriptionView(generics.UpdateAPIView):
         current_account = get_object_or_404(Account, id=self.request.user.id)
         # use get object or 404 because we are updating specific current subscription with an id and account
         # use current_account because we only want logged-in user to be able to edit their subscriptions
-        return get_object_or_404(CurrentSubscription, id=self.kwargs['subscription'], account=current_account)
+        return get_object_or_404(CurrentSubscription, account=current_account)
         # will return "Not found" if current subscription does not belong to user
 
 
@@ -39,5 +39,5 @@ class CancelSubscriptionView(generics.DestroyAPIView):
         current_account = get_object_or_404(Account, id=self.request.user.id)
         # use get object or 404 because we are updating specific current subscription with an id and account
         # use current_account because we only want logged in user to be able to edit their subscriptions
-        return get_object_or_404(CurrentSubscription, id=self.kwargs['subscription'], account=current_account)
+        return get_object_or_404(CurrentSubscription, account=current_account)
         # will return "Not found" if current subscription does not belong to user

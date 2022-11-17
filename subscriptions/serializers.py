@@ -1,4 +1,5 @@
 from rest_framework.serializers import ModelSerializer, ValidationError
+from rest_framework.validators import UniqueValidator
 from subscriptions.models import SubscriptionPlan, CurrentSubscription
 from payments.serializers import PaymentInfoSerializer
 from accounts.serializers import AccountSerializer
@@ -23,7 +24,6 @@ class CurrentSubscriptionSerializer(ModelSerializer):
         model = CurrentSubscription
         fields = [
             'account',
-            'studio',
             'plan',
         ]
         read_only_fields = ['account']
@@ -65,10 +65,5 @@ class CurrentSubscriptionSerializer(ModelSerializer):
     def create(self, validated_data):
         current_account_id = self.context['request'].user.id
         current_account = get_object_or_404(Account, pk=current_account_id)
-        return CurrentSubscription.objects.create(account=current_account, studio=validated_data['studio'],
+        return CurrentSubscription.objects.create(account=current_account, 
                                                   plan=validated_data['plan'])
-
-
-class CreateUserSubscriptionSerializer(ModelSerializer):
-    payment_info = PaymentInfoSerializer
-    fields = []
