@@ -10,25 +10,36 @@ class Class(m.Model):
     name = m.CharField(max_length=250)
     description = m.TextField()
     coach = m.CharField(max_length=250)
+    class_start = m.DateField()
+    class_end = m.DateField()
+    class_time = m.TimeField()
     duration = m.DurationField()
+    days_inbetween = m.IntegerField()
+    spots = m.IntegerField()
 
-    def set_time(self, class_time: datetime.datetime, class_end: datetime.datetime, duration: datetime.timedelta, spot_left: int):
-        self.duration = duration
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        self.set_time()
+        return self
 
-        time_i = class_time
-        while time_i < class_end:
+    def set_time(self):
+        self.duration = self.duration
+
+        time_i = datetime.datetime.combine(self.class_start, self.class_time)
+        while time_i <= datetime.datetime.combine(self.class_end, self.class_time):
             ClassTimeTable.objects.create(
-                class_id=self,
+                classid=self,
                 time=time_i,
-                spot_left=spot_left,
+                spotleft=self.spots,
             )
-            time_i += duration
+            time_i += datetime.timedelta(days=self.days_inbetween)
+            print("time_i: {}".format(time_i))
 
         return
 
-    def edit_time(self, class_time: datetime.datetime, class_end: datetime.datetime, duration: datetime.timedelta, spot_left: int):
+    def edit_time(self):
         ClassTimeTable.objects.filter(class_id=self).delete()
-        self.set_time(class_time, class_end, duration, spot_left)
+        self.set_time()
     
     def delete_one_time(self, time: datetime.datetime):
         if not ClassTimeTable.objects.filter(class_id=self, time=time).exists():
