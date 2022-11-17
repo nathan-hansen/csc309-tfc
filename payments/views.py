@@ -3,13 +3,30 @@ from rest_framework.generics import RetrieveAPIView, ListAPIView, CreateAPIView,
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from payments.serializers import PaymentInfoSerializer, PaymentHistorySerializer
 from payments.models import PaymentInfo, PaymentHistory
+from accounts.models import Account
 from django.utils import timezone
 from django.shortcuts import get_object_or_404
+from rest_framework.response import Response
 
 
 class CreatePaymentInfoView(CreateAPIView):
     permission_classes = [IsAuthenticated]
     serializer_class = PaymentInfoSerializer
+
+    # add validation logic to create
+    # based off this: https://stackoverflow.com/q/45981835
+    def create(self, request, *args, **kwargs):
+        # add code to check if an account with this subscription already exists
+        current_account_id = self.request.user.id
+        current_account = get_object_or_404(Account, pk=current_account_id)
+        # it shouldn't ever 404 here because this is an authenticated view
+        # maybe we should add a check here?
+
+        # check if subscription with this account exists
+        if PaymentInfo.objects.filter(account=current_account).exists():
+            return Response({'error': 'Payment Info already exists for this user'}, status=400)
+        # otherwise keep the existing create view api logic
+        return super(CreatePaymentInfoView, self).create(request, *args, **kwargs)
 
 
 class PaymentInfoUpdateView(UpdateAPIView):
