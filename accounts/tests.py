@@ -1,5 +1,7 @@
-from django.test import TestCase
 import random
+
+from django.test import TestCase
+
 
 # Create your tests here.
 class AccountTestCase(TestCase):
@@ -75,21 +77,6 @@ class AccountTestCase(TestCase):
         self.assertTrue('access' in response.data)
         self.assertTrue(response.data['access'] != refresh_token)
 
-    def test_logout(self):
-        self.register_and_sign_in()
-        # without refresh token
-        response = self.client.post('/accounts/logout/')
-        self.assertEqual(response.status_code, 401)
-
-        # successful logout
-        response = self.client.post('/accounts/login/', {'username': self.username, 'password': self.password})
-        self.assertEqual(response.status_code, 200)
-        refresh_token = response.data['refresh']
-        response = self.client.post('/accounts/logout/', {'refresh': refresh_token})
-        self.assertEqual(response.status_code, 205)
-        # refresh token is no longer valid
-        response = self.client.post('/accounts/api/token/refresh/', {'refresh': refresh_token})
-        self.assertEqual(response.status_code, 401)
 
     def test_update(self):
         self.register_and_sign_in()

@@ -17,6 +17,7 @@ class ClassTimeTableSerializer(serializers.ModelSerializer):
     class Meta:
         model = ClassTimeTable
         fields = ['time', 'spotleft']
+        # fields = ['class', 'time', 'spotleft']
 
 
 class ClassSerializer(serializers.ModelSerializer):
@@ -24,7 +25,7 @@ class ClassSerializer(serializers.ModelSerializer):
     A class has a name, description, coach, a list of keywords (e.g., upper-body, core, etc.), 
     capacity, and times. '''
     keywords = KeywordsSerializer(many=True, read_only=True)
-    timetable = ClassTimeTableSerializer(many=True, read_only=True)
+    timetable = ClassTimeTableSerializer(source='timetable_upcoming',many=True, read_only=True)
 
     class Meta:
         model = Class
