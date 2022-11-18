@@ -99,6 +99,7 @@ class TestClasses(TestCase):
             filter(classid__in=Class.objects.filter(studio=self.studio)))
         )
 
+
     def test_enroll(self):
         self.SetUp()
 
@@ -179,3 +180,52 @@ class TestClasses(TestCase):
             self.assertEqual(response.status_code, 400)
             response = json.loads(response.content.decode('utf-8'))
             self.assertEqual(response['error'], 'Not enrolled')
+
+        # drop again as another user, should fail
+        Account.objects.create_user(username='test2', password='test')
+        client.login(username='test2', password='test')
+        for i in classtime_list:
+            response = client.post(f'/classes/modify/', {'timeid': i.id, 'op': 'drop'})
+            self.assertEqual(response.status_code, 400)
+            response = json.loads(response.content.decode('utf-8'))
+            self.assertEqual(response['error'], 'Not enrolled')
+
+    def test_class_history(self):
+        self.SetUp()
+
+        client = Client()
+        user1 = Account.objects.create_user(username='test1', password='test')
+        client.login(username='test1', password='test')
+
+        
+        total_list = []
+        # enroll past class
+        for class_ in self.class_past:
+            classtime_list = ClassTimeTable.objects.filter(classid=class_)
+            total_list += classtime_list
+            self.assertTrue(len(classtime_list) != 0)
+
+            for i in classtime_list:
+                response = client.post(f'/classes/modify/', {'timeid': i.id, 'op': 'enroll'})
+                self.assertEqual(response.status_code, 200)
+                response = json.loads(response.content.decode('utf-8'))
+                self.assertTrue(response['message'] == 'Enrolled')
+
+        # enroll future class
+        for class_ in self.class_future:
+            classtime_list = ClassTimeTable.objects.filter(classid=class_)
+            total_list += classtime_list
+            self.assertTrue(len(classtime_list) != 0)
+
+            for i in classtime_list:
+                response = client.post(f'/classes/modify/', {'timeid': i.id, 'op': 'enroll'})
+                self.assertEqual(response.status_code, 200)
+                response = json.loads(response.content.decode('utf-8'))
+                self.assertTrue(response['message'] == 'Enrolled')
+
+        # get history and schedule
+        response = client.get(f'/classes/{self.studio.id}/schedule/')
+        self.assertEqual(response.status_code, 200)
+        response = json.loads(response.content.decode('utf-8'))
+        
+        self.assertEqual(len(response), len(total_list))

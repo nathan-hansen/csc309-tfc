@@ -24,13 +24,13 @@ class ListUpcomingClassView(generics.ListAPIView):
 
 class ListMyClassView(generics.ListAPIView):
     permission_classes = (IsAuthenticated,)
-    serializer_class = ClassTimeTableSerializer
+    serializer_class = EnrollClassSerializer
 
     def get_queryset(self):
-        return ClassTimeTable.objects.filter(time__lt=timezone.now()).\
-            filter(classid__in=Class.objects.filter(studio=self.kwargs['studio_id'])).\
-            filter(enrollclass__in=EnrollClass.objects.filter(account=self.request.user)).\
-            order_by('-time')
+        # As a user, I want to see my class schedule and history in chronological order
+        return EnrollClass.objects.filter(account=self.request.user).\
+            filter(classtime__classid__in=Class.objects.filter(studio=self.kwargs['studio_id'])).\
+            order_by('classtime__time')
 
 
 class ModifyClassView(APIView):
