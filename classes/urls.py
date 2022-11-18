@@ -9,7 +9,7 @@ from classes.views import (
 app_name = 'classes'
 
 urlpatterns = [
-    path('list/', ListUpcomingClassView.as_view(), name='list'),
+    path('<int:studio_id>/upcoming/', ListUpcomingClassView.as_view(), name='upcoming'),
     path('history/', ListMyClassView.as_view(), name='history'),
     path('modify/', ModifyClassView.as_view(), name='modify'),
 ]

@@ -1,8 +1,10 @@
+from django.core.exceptions import ValidationError
 import datetime
 
 from django.db import models as m
 
 from accounts.models import Account
+from django.utils.timezone import make_aware
 
 
 class Class(m.Model):
@@ -17,6 +19,15 @@ class Class(m.Model):
     days_inbetween = m.IntegerField()
     spots = m.IntegerField()
 
+    def __str__(self) -> str:
+        return self.name
+
+    def clean(self):
+        if self.class_start > self.class_end:
+            raise ValidationError('Class start date cannot be later than class end date')
+
+        return super().clean()
+
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         self.set_time()
@@ -29,11 +40,10 @@ class Class(m.Model):
         while time_i <= datetime.datetime.combine(self.class_end, self.class_time):
             ClassTimeTable.objects.create(
                 classid=self,
-                time=time_i,
+                time=make_aware(time_i),
                 spotleft=self.spots,
             )
             time_i += datetime.timedelta(days=self.days_inbetween)
-            print("time_i: {}".format(time_i))
 
         return
 
@@ -56,6 +66,9 @@ class ClassTimeTable(m.Model):
     classid = m.ForeignKey('Class', on_delete=m.CASCADE, related_name='timetable')
     time = m.DateTimeField()
     spotleft = m.IntegerField()
+
+    def __str__(self) -> str:
+        return f'{self.classid.name} at {self.time}'
 
     def check_full(self):
         return self.spotleft != 0
