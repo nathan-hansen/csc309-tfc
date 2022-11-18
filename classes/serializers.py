@@ -29,7 +29,7 @@ class ClassTimeTableSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ClassTimeTable
-        fields = ['time', 'spotleft', 'class_detail']
+        fields = ['id', 'time', 'spotleft', 'class_detail']
         # fields = ['class', 'time', 'spotleft']
 
     def get_class_detail(self, obj):

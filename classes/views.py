@@ -9,6 +9,7 @@ from django.db.models import Prefetch
 from classes.models import Class, ClassTimeTable, EnrollClass
 from classes.serializers import ClassSerializer, ClassTimeTableSerializer, EnrollClassSerializer
 
+from accounts.models import Account
 
 # Create your views here.
 class ListUpcomingClassView(generics.ListAPIView):
@@ -36,7 +37,7 @@ class ModifyClassView(APIView):
     permission_classes = (IsAuthenticated,)
 
     def post(self, request):
-        user = request.user
+        user = Account.objects.get(id=request.user.id)
         classtime = request.data.get('timeid')
         op = request.data.get('op')
 
@@ -46,10 +47,10 @@ class ModifyClassView(APIView):
         if op not in ['enroll', 'drop']:
             return Response({'error': 'Invalid op'}, status=400)
 
-        enroll_class = EnrollClass()
-        if enroll_class.check_enroll(user, classtime) and op == 'enroll':
+
+        if EnrollClass.check_enroll(user, classtime) and op == 'enroll':
             return Response({'error': 'Already enrolled'}, status=400)
-        elif not enroll_class.check_enroll(user, classtime) and op == 'drop':
+        elif not EnrollClass.check_enroll(user, classtime) and op == 'drop':
             return Response({'error': 'Not enrolled'}, status=400)
 
         classtime_ = get_object_or_404(ClassTimeTable, id=classtime)
@@ -57,8 +58,13 @@ class ModifyClassView(APIView):
             return Response({'error': 'Class is full'}, status=400)
 
         if op == 'enroll':
+            enroll_class = EnrollClass()
             enroll_class.enroll(user, classtime_)
             return Response({'message': 'Enrolled'}, status=200)
         elif op == 'drop':
-            enroll_class.drop(user, classtime_)
+            enroll_class = EnrollClass.objects.get(account=user, classtime=classtime_)
+            if not enroll_class:
+                return Response({'error': 'Not enrolled'}, status=400)
+            
+            enroll_class.drop()
             return Response({'message': 'Dropped'}, status=200)
