@@ -2,14 +2,16 @@ from django.shortcuts import render
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import mixins
-from subscriptions.models import CurrentSubscription
+from subscriptions.models import CurrentSubscription, SubscriptionPlan
 from subscriptions.serializers import (
     SubscriptionPlanSerializer,
     CurrentSubscriptionSerializer,
 )
 from django.shortcuts import get_object_or_404
+from payments.models import PaymentInfo, PaymentHistory
 from accounts.models import Account
 from rest_framework.response import Response
+import datetime
 
 
 class SubscribeView(generics.CreateAPIView):
@@ -28,8 +30,23 @@ class SubscribeView(generics.CreateAPIView):
         # check if subscription with this account exists
         if CurrentSubscription.objects.filter(account=current_account).exists():
             return Response({'error': 'Subscription already exists for this user'}, status=400)
+        # check if payment info with this user exists, if not, raise error
+        if not PaymentInfo.objects.filter(account=current_account).exists():
+            return Response({'error': 'User does not have Payment Info to subscribe'}, status=400)
         # otherwise keep the existing create view api logic
-        return super(SubscribeView, self).create(request, *args, **kwargs)
+        created_subscription = super(SubscribeView, self).create(request, *args, **kwargs)
+
+        # Create Payment History
+        current_payment_info = get_object_or_404(PaymentInfo, account=current_account)
+        card_number = current_payment_info.card_number
+        card_expiry = current_payment_info.expiry_date
+        new_current_sub_plan_id = created_subscription.data.get('plan')
+        sub_plan = get_object_or_404(SubscriptionPlan, id=new_current_sub_plan_id)
+        amount = sub_plan.payment
+        today = datetime.datetime.combine(datetime.datetime.today(),
+                                          datetime.datetime.min.time())
+        PaymentHistory.objects.create(account=current_account, timestamp=today, amount=amount, card_number=card_number, card_expiry=card_expiry)
+        return created_subscription
 
 
 class UpdateSubscriptionView(generics.UpdateAPIView):
