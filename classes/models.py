@@ -71,7 +71,18 @@ class ClassTimeTable(m.Model):
         return f'{self.classid.name} at {self.time}'
 
     def check_full(self):
-        return self.spotleft != 0
+        return self.spotleft == 0
+
+    def decrease_spot(self):
+        self.spotleft -= 1
+        self.save()
+        return self.spotleft
+
+    def increase_spot(self):
+        self.spotleft += 1
+        self.save()
+        return self.spotleft
+
 
 
 class EnrollClass(m.Model):
@@ -81,10 +92,23 @@ class EnrollClass(m.Model):
     def enroll(self, account: Account, classtime: ClassTimeTable):
         self.account = account
         self.classtime = classtime
+        if self.classtime.check_full():
+            return False
+
+        classtime.decrease_spot()
         self.save()
+        return True
 
-    def check_enroll(self, account: Account, classtime: ClassTimeTable):
-        return self.objects.filter(account=account, classtime=classtime).exists()
+    def drop(self):
+        self.classtime.increase_spot()
+        self.delete()
+        return True
 
-    def get_user_enroll(self, account: Account):
-        return self.objects.filter(account=account)
+    def check_enroll(account: Account, classtime: ClassTimeTable):
+        return EnrollClass.objects.filter(account=account, classtime=classtime).exists()
+
+    def get_user_enroll(account: Account):
+        return EnrollClass.objects.filter(account=account)
+
+    def get_class_enroll(classtime: ClassTimeTable):
+        return EnrollClass.objects.filter(classtime=classtime)

@@ -10,7 +10,7 @@ app_name = 'classes'
 
 urlpatterns = [
     path('<int:studio_id>/upcoming/', ListUpcomingClassView.as_view(), name='upcoming'),
-    path('history/', ListMyClassView.as_view(), name='history'),
+    path('<int:studio_id>/schedule/', ListMyClassView.as_view(), name='schedule'),
     path('modify/', ModifyClassView.as_view(), name='modify'),
 ]
 
