@@ -71,6 +71,9 @@ class PaymentUpcomingView(APIView):
         if current_subscription.expiration < datetime.datetime.now(timezone_info):
             return Response({'error': 'No upcoming payments, subscription expired'}, status=400)
 
+        # if current subscription is null, return accordingly
+        if current_subscription.plan is None:
+            return Response({'error': 'You are not subscribed'}, status=400)
         # id of the plan should be stored in plan attribute
         current_plan_id = current_subscription.plan.id
         sub_plan = get_object_or_404(SubscriptionPlan, id=current_plan_id)
