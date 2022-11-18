@@ -33,7 +33,7 @@ class TestClasses(TestCase):
             studio=self.studio,
             name='fake class future {}'.format(i),
             description='fake description',
-            coach='fake coach',
+            coach='fake coach {}'.format(i),
             class_start=class_start,
             class_end=class_start + datetime.timedelta(days=random.randint(1, 60)),
             class_time=datetime.datetime.now().time(),
@@ -45,7 +45,7 @@ class TestClasses(TestCase):
             studio=self.studio,
             name='fake class middle {}'.format(i),
             description='fake description',
-            coach='fake coach',
+            coach='fake coach {}'.format(i),
             class_start=datetime.datetime.now() - datetime.timedelta(days=random.randint(1, 50)),
             class_end=datetime.datetime.now() + datetime.timedelta(days=random.randint(7, 50)),
             class_time=datetime.datetime.now().time(),
@@ -59,7 +59,7 @@ class TestClasses(TestCase):
             studio=self.studio,
             name='fake class past {}'.format(i),
             description='fake description',
-            coach='fake coach',
+            coach='fake coach {}'.format(i),
             class_start=class_end - datetime.timedelta(days=random.randint(1, 100)),
             class_end=class_end,
             class_time=datetime.datetime.now().time(),
@@ -72,7 +72,7 @@ class TestClasses(TestCase):
             studio=self.studio,
             name='class enroll test',
             description='fake description',
-            coach='fake coach',
+            coach='fake coach {}'.format(1),
             class_start=datetime.datetime.now() + datetime.timedelta(days=random.randint(1, 30)),
             class_end=datetime.datetime.now() + datetime.timedelta(days=random.randint(40, 60)),
             class_time=datetime.datetime.now().time(),
@@ -97,6 +97,21 @@ class TestClasses(TestCase):
             ClassTimeTable.objects.filter(time__gte=timezone.now()).\
             filter(spotleft__gt=0).\
             filter(classid__in=Class.objects.filter(studio=self.studio)))
+        )
+
+        # test if the response is sorted by time
+        for i in range(len(response_list) - 1):
+            self.assertTrue(response_list[i]['time'] <= response_list[i+1]['time'])
+        
+        # test filters
+        response = client.get(f'/classes/{self.studio.id}/upcoming/?classid__coach=fake%20coach%201')
+        self.assertEqual(response.status_code, 200)
+        response_list = json.loads(response.content.decode('utf-8'))
+        self.assertEqual(len(response_list), len(
+            ClassTimeTable.objects.filter(time__gte=timezone.now()).\
+            filter(spotleft__gt=0).\
+            filter(classid__in=Class.objects.filter(studio=self.studio).\
+            filter(coach='fake coach 1')))
         )
 
 

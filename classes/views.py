@@ -4,6 +4,7 @@ from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
+import django_filters.rest_framework
 from django.db.models import Prefetch
 
 from classes.models import Class, ClassTimeTable, EnrollClass
@@ -14,6 +15,8 @@ from accounts.models import Account
 # Create your views here.
 class ListUpcomingClassView(generics.ListAPIView):
     serializer_class = ClassTimeTableSerializer
+    search_fields = ['classid__name', 'classid__coach', 'classid__duration', 'time']
+    filterset_fields = search_fields
 
     def get_queryset(self):
         return ClassTimeTable.objects.filter(time__gte=timezone.now()).\
