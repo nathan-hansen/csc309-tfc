@@ -83,8 +83,10 @@ class PaymentUpcomingView(APIView):
         history_queryset = PaymentHistory.objects.filter(account=self.request.user).filter(
             timestamp__lte=timezone.now())
         most_recent_payment = history_queryset.distinct().order_by('-timestamp')[0]
-        card_number = most_recent_payment.card_number
-        card_expiry = most_recent_payment.card_expiry
+        # user payment credentials
+        user_payment_info = PaymentInfo.objects.filter(account=self.request.user)[0]
+        card_number = user_payment_info.card_number
+        card_expiry = user_payment_info.expiry_date
         # set the time attribute of future payment
         most_recent_payment_time = most_recent_payment.timestamp
         # calculate the date of the upcoming payment
