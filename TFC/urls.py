@@ -19,10 +19,13 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
+    path("api-auth/", include("rest_framework.urls")),
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
     path('studios/', include('studios.urls')),
     path('classes/', include('classes.urls')),
+    path('payments/', include('payments.urls')),
+    path('subscriptions/', include('subscriptions.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 # add media_URL and MEDIA_ROOT from settings for image urls to work properly
 
