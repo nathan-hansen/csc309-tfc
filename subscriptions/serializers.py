@@ -58,7 +58,6 @@ class CurrentSubscriptionSerializer(ModelSerializer):
 
 
             except AttributeError:
-                data['expiration'] = None
                 return data
 
     # reference to override create method to pre-set attribute to logged-in user:
