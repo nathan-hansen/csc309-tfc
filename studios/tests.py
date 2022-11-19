@@ -1,8 +1,9 @@
 from django.test import TestCase, Client
 from django.contrib.auth.models import User
-import random, geopy
-
+import random
+from geopy.distance import great_circle
 from studios.models import Studio, StudioImage, Amenities
+
 
 # Create your tests here.
 class StudioTest(TestCase):
@@ -30,7 +31,7 @@ class StudioTest(TestCase):
                 postal_code="postal_code{}".format(i),
                 phone_number="1234567890",
             )
-            for i in range(random.randint(0, 20))
+            for i in range(1, random.randint(1, 21))
         ]
 
     def test_list_studio_by_proximity(self):
@@ -44,18 +45,17 @@ class StudioTest(TestCase):
                 "/studios/list/{},{}".format(cood[0], cood[1])
             )
             self.assertEqual(response.status_code, 200)
-            self.assertEqual(len(response.data), len(self.studios))
+            self.assertEqual(response.data['count'], len(self.studios))
 
             distance_list = [
-                (geopy.distance.distance(
+                (great_circle(
                     (studio.latitude, studio.longitude), cood
-                ).km, studio)
+                    ), studio)
                 for studio in self.studios
             ]
             distance_list.sort(key=lambda x: x[0])
 
-            # print(response.content)
             for i in range(len(self.studios)):
-                self.assertEqual(response.data[i]["name"], distance_list[i][1].name)
+                self.assertEqual(response.data["results"][i]["name"], distance_list[i][1].name)
         
 
