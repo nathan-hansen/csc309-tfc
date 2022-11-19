@@ -27,4 +27,4 @@ class PaymentHistorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = PaymentHistory
-        fields = ['account', 'timestamp', 'card_number', 'card_expiry']
+        fields = ['account', 'timestamp', 'amount', 'card_number', 'card_expiry']
