@@ -11,6 +11,10 @@ from studios.models import Studio, StudioImage, Amenities
 
 # user authenticated views
 class ListStudioByProximityView(generics.ListAPIView):
+    """
+    List Studios by proximity, with optional search and filter capability via parameters.
+    Needs latitude and longitude values passed through the URL to operate.
+    """
     serializer_class = StudioSerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
     filterset_fields = ['name', 'amenities__amenity_type', 'tfc_class__name', 'tfc_class__coach']
@@ -38,6 +42,9 @@ class ListStudioByProximityView(generics.ListAPIView):
         return queryset
 
 class StudioView(generics.RetrieveAPIView):
+    """
+    View Studio information given a Studio ID.
+    """
     serializer_class = StudioSerializer
 
     def get_object(self):
@@ -45,11 +52,21 @@ class StudioView(generics.RetrieveAPIView):
 
 # views for related models
 class ListStudioImagesView(generics.ListAPIView):
+    """
+    View StudioImages given a Studio ID.
+    Intended for use in tandem with StudioView
+    for a comprehensive look at a studio.
+    """
     serializer_class = StudioImageSerializer
     def get_queryset(self):
         return StudioImage.objects.filter(studio=self.kwargs['studio'])
 
 class ListAmenitiesView(generics.ListAPIView):
+    """
+    View Amenities given a Studio ID.
+    Intended for use in tandem with StudioView
+    for a comprehensive look at a studio.
+    """
     serializer_class = AmenitiesSerializer
     def get_queryset(self):
         return Amenities.objects.filter(studio=self.kwargs['studio'])
