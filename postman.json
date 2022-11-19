@@ -1,0 +1,1808 @@
+{
+	"info": {
+		"_postman_id": "3f010057-dc49-4124-9e98-07181300afb8",
+		"name": "CSC309 TFC Project Backend",
+		"description": "Built by Letian Cheng, Nathan Hansen, Edward Leung",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "accounts",
+			"item": [
+				{
+					"name": "update",
+					"item": [
+						{
+							"name": "accounts update update",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"cKy2Eid\",\n  \"first_name\": \"incididunt\",\n  \"last_name\": \"consec\",\n  \"email\": \"UtKElrPc@ZHlgiiXGMskzPXkOKGrsLohwhrFr.pyvg\",\n  \"phone_number\": \"+134671078958\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/accounts/update/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"accounts",
+										"update",
+										""
+									]
+								},
+								"description": "Allows a user to update their account details."
+							},
+							"response": [
+								{
+									"name": "Untitled Response",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: basic",
+												"key": "Authorization",
+												"value": "Basic <credentials>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/accounts/update/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"accounts",
+												"update",
+												""
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"username\": \"m\",\n  \"first_name\": \"culpa exercitation\",\n  \"last_name\": \"laboris incididunt\",\n  \"email\": \"JnfNm@uuwxBMJKAyTkeYXMxWgYe.purc\",\n  \"avatar\": \"http://bZaprN.rxxka8bV0f,lYI+\",\n  \"phone_number\": \"8346953504\"\n}"
+								}
+							]
+						},
+						{
+							"name": "accounts update partial update",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"cKy2Eid\",\n  \"first_name\": \"incididunt\",\n  \"last_name\": \"consec\",\n  \"email\": \"UtKElrPc@ZHlgiiXGMskzPXkOKGrsLohwhrFr.pyvg\",\n  \"phone_number\": \"+134671078958\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/accounts/update/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"accounts",
+										"update",
+										""
+									]
+								},
+								"description": "Allows a user to update their account details."
+							},
+							"response": [
+								{
+									"name": "Untitled Response",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: basic",
+												"key": "Authorization",
+												"value": "Basic <credentials>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/accounts/update/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"accounts",
+												"update",
+												""
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"username\": \"m\",\n  \"first_name\": \"culpa exercitation\",\n  \"last_name\": \"laboris incididunt\",\n  \"email\": \"JnfNm@uuwxBMJKAyTkeYXMxWgYe.purc\",\n  \"avatar\": \"http://bZaprN.rxxka8bV0f,lYI+\",\n  \"phone_number\": \"8346953504\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "accounts api token refresh create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"refresh\": \"aute\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/accounts/api/token/refresh/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"accounts",
+								"api",
+								"token",
+								"refresh",
+								""
+							]
+						},
+						"description": "Takes a refresh type JSON web token and returns an access type JSON web\ntoken if the refresh token is valid."
+					},
+					"response": [
+						{
+							"name": "Untitled Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: basic",
+										"key": "Authorization",
+										"value": "Basic <credentials>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"refresh\": \"aute\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/accounts/api/token/refresh/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"accounts",
+										"api",
+										"token",
+										"refresh",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"refresh\": \"id\",\n  \"access\": \"nostrud commodo\"\n}"
+						}
+					]
+				},
+				{
+					"name": "accounts login create",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"deserunt cillum\",\n  \"password\": \"eiusmod fugiat\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/accounts/login/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"accounts",
+								"login",
+								""
+							]
+						},
+						"description": "Takes a set of user credentials and returns an access and refresh JSON web\ntoken pair to prove the authentication of those credentials."
+					},
+					"response": [
+						{
+							"name": "Untitled Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: basic",
+										"key": "Authorization",
+										"value": "Basic <credentials>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"deserunt cillum\",\n  \"password\": \"eiusmod fugiat\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/accounts/login/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"accounts",
+										"login",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"username\": \"deserunt cillum\",\n  \"password\": \"eiusmod fugiat\"\n}"
+						}
+					]
+				},
+				{
+					"name": "accounts signup create",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"0tvR\",\n  \"password\": \"amet tempor ea eiusmod\",\n  \"password2\": \"cillum \",\n  \"first_name\": \"voluptate in\",\n  \"last_name\": \"voluptate labore adipisicing in\",\n  \"email\": \"tUCgSPoU83@TrLl.xbc\",\n  \"phone_number\": \"16224935678\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/accounts/signup/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"accounts",
+								"signup",
+								""
+							]
+						},
+						"description": "Allows a user to register on the website."
+					},
+					"response": [
+						{
+							"name": "Untitled Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: basic",
+										"key": "Authorization",
+										"value": "Basic <credentials>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"0tvR\",\n  \"password\": \"amet tempor ea eiusmod\",\n  \"password2\": \"cillum \",\n  \"first_name\": \"voluptate in\",\n  \"last_name\": \"voluptate labore adipisicing in\",\n  \"email\": \"tUCgSPoU83@TrLl.xbc\",\n  \"phone_number\": \"16224935678\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/accounts/signup/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"accounts",
+										"signup",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"username\": \"jzujxke\",\n  \"password\": \"do ad qui sint\",\n  \"password2\": \"ex ad\",\n  \"first_name\": \"consectetur\",\n  \"last_name\": \"fugiat reprehenderit\",\n  \"email\": \"DxiYBn3Um@NHoKjvBqncpQuGc.dlp\",\n  \"avatar\": \"https://uSTTPMDpOBxwEzU.dvRohlm9jUZZd5\",\n  \"phone_number\": \"56147476878277\"\n}"
+						}
+					]
+				},
+				{
+					"name": "accounts read",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/accounts/{{account_id}}/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"accounts",
+								"{{account_id}}",
+								""
+							]
+						},
+						"description": "View a given account."
+					},
+					"response": [
+						{
+							"name": "Untitled Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: basic",
+										"key": "Authorization",
+										"value": "Basic <credentials>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/accounts/:account_id/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"accounts",
+										":account_id",
+										""
+									],
+									"variable": [
+										{
+											"key": "account_id",
+											"value": "eiusmod veniam ullamco",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"username\": \"m\",\n  \"first_name\": \"culpa exercitation\",\n  \"last_name\": \"laboris incididunt\",\n  \"email\": \"JnfNm@uuwxBMJKAyTkeYXMxWgYe.purc\",\n  \"avatar\": \"http://bZaprN.rxxka8bV0f,lYI+\",\n  \"phone_number\": \"8346953504\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "classes",
+			"item": [
+				{
+					"name": "{studio id}",
+					"item": [
+						{
+							"name": "classes schedule list",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/classes/{{studio_id}}/schedule/?limit=-69603318&offset=-69603318",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"classes",
+										"{{studio_id}}",
+										"schedule",
+										""
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "-69603318",
+											"description": "Number of results to return per page."
+										},
+										{
+											"key": "offset",
+											"value": "-69603318",
+											"description": "The initial index from which to return the results."
+										}
+									]
+								},
+								"description": "Allows a user to view their upcoming enrolled classes in chronological order."
+							},
+							"response": [
+								{
+									"name": "Untitled Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: basic",
+												"key": "Authorization",
+												"value": "Basic <credentials>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/classes/:studio_id/schedule/?limit=-69603318&offset=-69603318",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"classes",
+												":studio_id",
+												"schedule",
+												""
+											],
+											"query": [
+												{
+													"key": "limit",
+													"value": "-69603318"
+												},
+												{
+													"key": "offset",
+													"value": "-69603318"
+												}
+											],
+											"variable": [
+												{
+													"key": "studio_id",
+													"value": "eiusmod veniam ullamco",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"count\": 62317673,\n  \"results\": [\n    {\n      \"account\": {\n        \"username\": \"hLoaT\",\n        \"first_name\": \"elit ut consequat proident id\",\n        \"last_name\": \"adipisicing aliquip velit sed\",\n        \"email\": \"cemU@OJXsxDxnZE.ofis\",\n        \"avatar\": \"https://P.kvixl1Y8l20GzcFFTtk7NQ5WruXfTbI\",\n        \"phone_number\": \"+1972989609955\"\n      },\n      \"classtime\": {\n        \"time\": \"1946-08-01T20:53:04.888Z\",\n        \"spotleft\": -10243156,\n        \"id\": 40741668,\n        \"class_detail\": \"deserunt\"\n      },\n      \"class_detail\": \"qui incididunt commodo elit magna\"\n    },\n    {\n      \"account\": {\n        \"username\": \"POw\",\n        \"first_name\": \"est laborum et cupidatat\",\n        \"last_name\": \"dolore\",\n        \"email\": \"V5BROLWCrKebJXV@tckFwNVYpHdZkoJhOettPqmZTtsqNjOmA.ctg\",\n        \"avatar\": \"http://cFGncgK.fpphSi0vITr+qUTV.bw3.qiiRQzFU3BmNKCc6oDvrOsRaDPLo6SvXh\",\n        \"phone_number\": \"+065574671145061\"\n      },\n      \"classtime\": {\n        \"time\": \"1945-08-12T02:25:46.985Z\",\n        \"spotleft\": 79383676,\n        \"id\": 23994760,\n        \"class_detail\": \"nostrud labore aliquip veniam\"\n      },\n      \"class_detail\": \"aliqua\"\n    }\n  ],\n  \"next\": \"https://ZzfojmmafQAEsin.qqxBW4BzI5,eZ\",\n  \"previous\": \"http://mbDjJguQhgeKAXwmtFUHpoUNdq.lytsbGR4i3hQWe1QB3dosY-ezRWHqQem\"\n}"
+								}
+							]
+						},
+						{
+							"name": "classes upcoming list",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/classes/{{studio_id}}/upcoming/?limit=-69603318&offset=-69603318",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"classes",
+										"{{studio_id}}",
+										"upcoming",
+										""
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "-69603318",
+											"description": "Number of results to return per page."
+										},
+										{
+											"key": "offset",
+											"value": "-69603318",
+											"description": "The initial index from which to return the results."
+										}
+									]
+								},
+								"description": "List upcoming classes in a given studio."
+							},
+							"response": [
+								{
+									"name": "Untitled Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: basic",
+												"key": "Authorization",
+												"value": "Basic <credentials>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/classes/:studio_id/upcoming/?limit=-69603318&offset=-69603318",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"classes",
+												":studio_id",
+												"upcoming",
+												""
+											],
+											"query": [
+												{
+													"key": "limit",
+													"value": "-69603318"
+												},
+												{
+													"key": "offset",
+													"value": "-69603318"
+												}
+											],
+											"variable": [
+												{
+													"key": "studio_id",
+													"value": "eiusmod veniam ullamco",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"count\": -53196476,\n  \"results\": [\n    {\n      \"time\": \"2011-07-27T04:01:29.560Z\",\n      \"spotleft\": 1491701,\n      \"id\": 48331768,\n      \"class_detail\": \"pariatur\"\n    },\n    {\n      \"time\": \"2019-05-12T06:00:11.557Z\",\n      \"spotleft\": 28721980,\n      \"id\": 34485788,\n      \"class_detail\": \"ut in esse\"\n    }\n  ],\n  \"next\": \"https://VwwmNqaJNWuZNNbROvgQHSlAXO.ykglaTvd3dTKwpVf0UHUarS\",\n  \"previous\": \"https://NrqjA.cvurPVMvy0GvhoqKLrXQRyeY10R67y7xwerAek0XfBo7qsaxgJBvWmKGtdVXDGey+k.QZCK\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "classes modify create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/classes/modify/?classtime id=eiusmod veniam ullamco&account id=-69603318&op=eiusmod veniam ullamco",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"classes",
+								"modify",
+								""
+							],
+							"query": [
+								{
+									"key": "classtime id",
+									"value": "eiusmod veniam ullamco",
+									"description": "Class time"
+								},
+								{
+									"key": "account id",
+									"value": "-69603318",
+									"description": "User ID"
+								},
+								{
+									"key": "op",
+									"value": "eiusmod veniam ullamco",
+									"description": "Operation: either enroll or drop"
+								}
+							]
+						},
+						"description": "Enroll or drop a class"
+					},
+					"response": [
+						{
+							"name": "Untitled Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: basic",
+										"key": "Authorization",
+										"value": "Basic <credentials>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/classes/modify/?classtime id=eiusmod veniam ullamco&account id=-69603318&op=eiusmod veniam ullamco",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"classes",
+										"modify",
+										""
+									],
+									"query": [
+										{
+											"key": "classtime id",
+											"value": "eiusmod veniam ullamco"
+										},
+										{
+											"key": "account id",
+											"value": "-69603318"
+										},
+										{
+											"key": "op",
+											"value": "eiusmod veniam ullamco"
+										}
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "payments",
+			"item": [
+				{
+					"name": "update",
+					"item": [
+						{
+							"name": "payments update update",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name_on_card\": \"cupidatat adipisicing consequat\",\n  \"card_number\": \"veniam Duis anim eu\",\n  \"cvv\": -91286752,\n  \"expiry_date\": \"2011-11-20\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/payments/update/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"payments",
+										"update",
+										""
+									]
+								},
+								"description": "Allows a user to alter their credit card details."
+							},
+							"response": [
+								{
+									"name": "Untitled Response",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: basic",
+												"key": "Authorization",
+												"value": "Basic <credentials>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/payments/update/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"payments",
+												"update",
+												""
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"name_on_card\": \"incididunt dolore\",\n  \"card_number\": \"mollit Excepteur aliqua\",\n  \"cvv\": 9734811,\n  \"expiry_date\": \"2013-11-09\",\n  \"account\": \"dolor incididunt elit\"\n}"
+								}
+							]
+						},
+						{
+							"name": "payments update partial update",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name_on_card\": \"cupidatat adipisicing consequat\",\n  \"card_number\": \"veniam Duis anim eu\",\n  \"cvv\": -91286752,\n  \"expiry_date\": \"2011-11-20\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/payments/update/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"payments",
+										"update",
+										""
+									]
+								},
+								"description": "Allows a user to alter their credit card details."
+							},
+							"response": [
+								{
+									"name": "Untitled Response",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: basic",
+												"key": "Authorization",
+												"value": "Basic <credentials>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/payments/update/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"payments",
+												"update",
+												""
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"name_on_card\": \"incididunt dolore\",\n  \"card_number\": \"mollit Excepteur aliqua\",\n  \"cvv\": 9734811,\n  \"expiry_date\": \"2013-11-09\",\n  \"account\": \"dolor incididunt elit\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "payments add create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name_on_card\": \"cupidatat adipisicing consequat\",\n  \"card_number\": \"veniam Duis anim eu\",\n  \"cvv\": -91286752,\n  \"expiry_date\": \"2011-11-20\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/payments/add/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"payments",
+								"add",
+								""
+							]
+						},
+						"description": "Allows a user to register their credit card details."
+					},
+					"response": [
+						{
+							"name": "Untitled Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: basic",
+										"key": "Authorization",
+										"value": "Basic <credentials>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/payments/add/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"payments",
+										"add",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"name_on_card\": \"incididunt dolore\",\n  \"card_number\": \"mollit Excepteur aliqua\",\n  \"cvv\": 9734811,\n  \"expiry_date\": \"2013-11-09\",\n  \"account\": \"dolor incididunt elit\"\n}"
+						}
+					]
+				},
+				{
+					"name": "payments history list",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/payments/history/?limit=-69603318&offset=-69603318",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"payments",
+								"history",
+								""
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "-69603318",
+									"description": "Number of results to return per page."
+								},
+								{
+									"key": "offset",
+									"value": "-69603318",
+									"description": "The initial index from which to return the results."
+								}
+							]
+						},
+						"description": "Allows a user to view all their past payments on file, sorted by recent."
+					},
+					"response": [
+						{
+							"name": "Untitled Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: basic",
+										"key": "Authorization",
+										"value": "Basic <credentials>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/payments/history/?limit=-69603318&offset=-69603318",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"payments",
+										"history",
+										""
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "-69603318"
+										},
+										{
+											"key": "offset",
+											"value": "-69603318"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"count\": 19412010,\n  \"results\": [\n    {\n      \"account\": \"ut esse sint\",\n      \"timestamp\": \"2009-11-14\",\n      \"amount\": -16766216.130180165,\n      \"card_number\": \"adipisicing sed reprehenderit commodo velit\",\n      \"card_expiry\": \"1960-01-25\"\n    },\n    {\n      \"account\": \"Duis est\",\n      \"timestamp\": \"2015-04-04\",\n      \"amount\": 30433537.682281077,\n      \"card_number\": \"exercitation non commodo aliquip\",\n      \"card_expiry\": \"2014-11-26\"\n    }\n  ],\n  \"next\": \"http://VgTpduJmZeCssdvzGiDKjwvuWRurByQ.mvjtnMcyHNTsupkVyH0eFBJdRmcj1N0L5.NTSls72-pZUWt1AdOuzQ9SK0bm1ujQ1bMS1v\",\n  \"previous\": \"https://bOEKuKWZZFmbTZqChcAIdzgeKdbyqTv.ydxjId4aLX-we0SlnnHhWkMr6j7MQEj0Is+LyBePV+6,ZfulDtdZXIGN,+NbLMP,OQ18fIv\"\n}"
+						}
+					]
+				},
+				{
+					"name": "payments upcoming list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/payments/upcoming/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"payments",
+								"upcoming",
+								""
+							]
+						},
+						"description": "Allows a user to view their next upcoming payment, and the payment recurrence interval.\nThe next upcoming payment is when the coverage they have already paid for expires"
+					},
+					"response": [
+						{
+							"name": "Untitled Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: basic",
+										"key": "Authorization",
+										"value": "Basic <credentials>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/payments/upcoming/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"payments",
+										"upcoming",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "studios",
+			"item": [
+				{
+					"name": "{studio}",
+					"item": [
+						{
+							"name": "studios read",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/studios/{{studio}}/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"studios",
+										"{{studio}}",
+										""
+									]
+								},
+								"description": "View Studio information given a Studio ID."
+							},
+							"response": [
+								{
+									"name": "Untitled Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: basic",
+												"key": "Authorization",
+												"value": "Basic <credentials>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/studios/:studio/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"studios",
+												":studio",
+												""
+											],
+											"variable": [
+												{
+													"key": "studio",
+													"value": "eiusmod veniam ullamco",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"name\": \"in in elit aute\",\n  \"address\": \"nos\",\n  \"latitude\": -85459281.06266336,\n  \"longitude\": -23404344.796723947,\n  \"postal_code\": \"anim officia\",\n  \"phone_number\": \"velit occaecat fugiat anim\"\n}"
+								}
+							]
+						},
+						{
+							"name": "studios amenities list",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/studios/{{studio}}/amenities/?limit=-69603318&offset=-69603318",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"studios",
+										"{{studio}}",
+										"amenities",
+										""
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "-69603318",
+											"description": "Number of results to return per page."
+										},
+										{
+											"key": "offset",
+											"value": "-69603318",
+											"description": "The initial index from which to return the results."
+										}
+									]
+								},
+								"description": "View Amenities given a Studio ID.\nIntended for use in tandem with StudioView\nfor a comprehensive look at a studio."
+							},
+							"response": [
+								{
+									"name": "Untitled Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: basic",
+												"key": "Authorization",
+												"value": "Basic <credentials>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/studios/:studio/amenities/?limit=-69603318&offset=-69603318",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"studios",
+												":studio",
+												"amenities",
+												""
+											],
+											"query": [
+												{
+													"key": "limit",
+													"value": "-69603318"
+												},
+												{
+													"key": "offset",
+													"value": "-69603318"
+												}
+											],
+											"variable": [
+												{
+													"key": "studio",
+													"value": "eiusmod veniam ullamco",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"count\": 51575971,\n  \"results\": [\n    {\n      \"studio\": 7886004,\n      \"amenity_type\": \"Lorem veniam anim in\",\n      \"quantity\": -10543630\n    },\n    {\n      \"studio\": -25485704,\n      \"amenity_type\": \"Ut est\",\n      \"quantity\": 89061952\n    }\n  ],\n  \"next\": \"https://jSUSSCfswSbZRYcBOAUAh.kxSkNTQAwxXdVfCmJhqnI8g+9JAfOZ54837,LZdy+0GBEiHa\",\n  \"previous\": \"http://VJqMycG.hpM2GRV82sfGlR6ap\"\n}"
+								}
+							]
+						},
+						{
+							"name": "studios images list",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/studios/{{studio}}/images/?limit=-69603318&offset=-69603318",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"studios",
+										"{{studio}}",
+										"images",
+										""
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "-69603318",
+											"description": "Number of results to return per page."
+										},
+										{
+											"key": "offset",
+											"value": "-69603318",
+											"description": "The initial index from which to return the results."
+										}
+									]
+								},
+								"description": "View StudioImages given a Studio ID.\nIntended for use in tandem with StudioView\nfor a comprehensive look at a studio."
+							},
+							"response": [
+								{
+									"name": "Untitled Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: basic",
+												"key": "Authorization",
+												"value": "Basic <credentials>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/studios/:studio/images/?limit=-69603318&offset=-69603318",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"studios",
+												":studio",
+												"images",
+												""
+											],
+											"query": [
+												{
+													"key": "limit",
+													"value": "-69603318"
+												},
+												{
+													"key": "offset",
+													"value": "-69603318"
+												}
+											],
+											"variable": [
+												{
+													"key": "studio",
+													"value": "eiusmod veniam ullamco",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"count\": 32473674,\n  \"results\": [\n    {\n      \"studio\": -3985930,\n      \"image\": \"https://mWBPJRELeoL.afsA695Ew+ymsxeKGzy2SPENpdYmhpw1ZMDYzRVHlgdFSjmrCH0kgQecTqM\"\n    },\n    {\n      \"studio\": -33435659,\n      \"image\": \"https://mzuIXtgWUuTEANIYjeUxymputMn.psoam5ddsiMUF\"\n    }\n  ],\n  \"next\": \"http://SB.rzdKBtknD0a89pBiB7VhoQwlDhSZ4tCebvIJKfsR-W+7rAHUmtTQu6xAoln2ptOrTuanm3oAPBYDql+\",\n  \"previous\": \"https://oJtrKIcqYSCsZnzkrLHzxSeBc.dplcSpSjrdsh+Q1JfdOH4aKAs1KPY,g7cKtFWO8Wp7Ol-ddOrdg27XhC+ABc9XlS\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "studios list read",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/studios/list/{{latitude}},{{longitude}}?search=eiusmod veniam ullamco&limit=-69603318&offset=-69603318",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"studios",
+								"list",
+								"{{latitude}},{{longitude}}"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "eiusmod veniam ullamco",
+									"description": "A search term."
+								},
+								{
+									"key": "limit",
+									"value": "-69603318",
+									"description": "Number of results to return per page."
+								},
+								{
+									"key": "offset",
+									"value": "-69603318",
+									"description": "The initial index from which to return the results."
+								}
+							]
+						},
+						"description": "List Studios by proximity, with optional search and filter capability via parameters.\nNeeds latitude and longitude values passed through the URL to operate."
+					},
+					"response": [
+						{
+							"name": "Untitled Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: basic",
+										"key": "Authorization",
+										"value": "Basic <credentials>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/studios/list/{{latitude}},{{longitude}}?search=eiusmod veniam ullamco&limit=-69603318&offset=-69603318",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"studios",
+										"list",
+										"{{latitude}},{{longitude}}"
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": "eiusmod veniam ullamco"
+										},
+										{
+											"key": "limit",
+											"value": "-69603318"
+										},
+										{
+											"key": "offset",
+											"value": "-69603318"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"count\": 65204862,\n  \"results\": [\n    {\n      \"name\": \"velit ea esse\",\n      \"address\": \"do nisi id\",\n      \"latitude\": -56377377.380743176,\n      \"longitude\": -6529700.32437934,\n      \"postal_code\": \"ipsum magna\",\n      \"phone_number\": \"exercitation tempor\"\n    },\n    {\n      \"name\": \"occaecat ex\",\n      \"address\": \"tempor incididunt officia\",\n      \"latitude\": 79897394.20826659,\n      \"longitude\": 12430970.636889651,\n      \"postal_code\": \"ullamco occaecat dolor minim cillum\",\n      \"phone_number\": \"ut laboris exercitation nulla\"\n    }\n  ],\n  \"next\": \"https://cujJQOtdeh.wxsIvIhzYpHS90dnk1CgwTzWHwZXiidFS,Jng3F9QhT6OJZWPfBSWXM\",\n  \"previous\": \"https://HBmdOKiTNHpa.cncTk+PyZwXZgdXzmlGjG3PDfU,\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "subscriptions",
+			"item": [
+				{
+					"name": "update",
+					"item": [
+						{
+							"name": "subscriptions update update",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"plan\": -65348944\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/subscriptions/update/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"subscriptions",
+										"update",
+										""
+									]
+								},
+								"description": "Allows a user to change their subscription plan to either a) another existing plan, or b) null (a cancellation).\nIf a user changes to a non-null subscription plan, the newer expiry date is added to the old one,\nand a new payment is created to reflect coverage to next expiry date."
+							},
+							"response": [
+								{
+									"name": "Untitled Response",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: basic",
+												"key": "Authorization",
+												"value": "Basic <credentials>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/subscriptions/update/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"subscriptions",
+												"update",
+												""
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"account\": \"ullamco\",\n  \"plan\": -53650531,\n  \"expiration\": \"1969-04-11\"\n}"
+								}
+							]
+						},
+						{
+							"name": "subscriptions update partial update",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"plan\": -65348944\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/subscriptions/update/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"subscriptions",
+										"update",
+										""
+									]
+								},
+								"description": "Allows a user to change their subscription plan to either a) another existing plan, or b) null (a cancellation).\nIf a user changes to a non-null subscription plan, the newer expiry date is added to the old one,\nand a new payment is created to reflect coverage to next expiry date."
+							},
+							"response": [
+								{
+									"name": "Untitled Response",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: basic",
+												"key": "Authorization",
+												"value": "Basic <credentials>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/subscriptions/update/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"subscriptions",
+												"update",
+												""
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"account\": \"ullamco\",\n  \"plan\": -53650531,\n  \"expiration\": \"1969-04-11\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "subscriptions subscribe create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"plan\": -65348944\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/subscriptions/subscribe/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"subscriptions",
+								"subscribe",
+								""
+							]
+						},
+						"description": "Allows a user to subscribe. Prerequisites:\n- This account does not have a subscription \n(or a previously cancelled subscription - in which case the UpdateView should instead be used.)\n- This account has registered payment information\n\nThis method creates:\n- a CurrentSubscription entry for this user\n- an entry in PaymentHistory logging this transaction"
+					},
+					"response": [
+						{
+							"name": "Untitled Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: basic",
+										"key": "Authorization",
+										"value": "Basic <credentials>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/subscriptions/subscribe/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"subscriptions",
+										"subscribe",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"account\": \"ullamco\",\n  \"plan\": -53650531,\n  \"expiration\": \"1969-04-11\"\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer"
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://127.0.0.1:8000",
+			"type": "string"
+		},
+		{
+			"key": "latitude",
+			"value": "eiusmod veniam ullamco",
+			"type": "any"
+		},
+		{
+			"key": "longitude",
+			"value": "eiusmod veniam ullamco",
+			"type": "any"
+		},
+		{
+			"key": "token",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "studio_id",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "studio",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "account_id",
+			"value": "",
+			"type": "default"
+		}
+	]
+}
