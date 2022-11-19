@@ -1,5 +1,4 @@
 from django.shortcuts import get_object_or_404
-from geopy.distance import geodesic
 from rest_framework import generics
 from rest_framework import filters
 from django_filters.rest_framework import DjangoFilterBackend
