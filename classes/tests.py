@@ -243,4 +243,4 @@ class TestClasses(TestCase):
         self.assertEqual(response.status_code, 200)
         response = json.loads(response.content.decode('utf-8'))
         
-        self.assertEqual(len(response), len(total_list))
+        self.assertEqual(len(response["results"]), len(total_list))
