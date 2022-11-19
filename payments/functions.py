@@ -17,20 +17,20 @@ def generate_upcoming_payment(account_id: int):
     # check if user has a subscription or payment info
     # check if payment info with this user exists, if not, raise error
     if not PaymentInfo.objects.filter(account=current_account).exists():
-        return {'error': 'No upcoming payments, User has no payment info'}
+        return {'error': 'No upcoming payments, User has no payment info'}, None, None
     if not CurrentSubscription.objects.filter(account=current_account).exists():
-        return {'error': 'No upcoming payments, User is not subscribed'}
+        return {'error': 'No upcoming payments, User is not subscribed'}, None, None
     # get object or 404 should never trigger here, due to checks above
     current_subscription = get_object_or_404(CurrentSubscription, account=current_account)
     # check if current subscription is expired
     # current_subscription.expiration is timezone aware, so to compare it to datetime.now(), add timezone
     timezone_info = current_subscription.expiration.tzinfo
     if current_subscription.expiration < datetime.datetime.now(timezone_info):
-        return {'error': 'No upcoming payments, subscription expired'}
+        return {'error': 'No upcoming payments, subscription expired'}, None, None
 
     # if current subscription is null, return accordingly
     if current_subscription.plan is None:
-        return {'error': 'You are not subscribed'}
+        return {'error': 'You are not subscribed'}, None, None
     # id of the plan should be stored in plan attribute
     current_plan_id = current_subscription.plan.id
     sub_plan = get_object_or_404(SubscriptionPlan, id=current_plan_id)
@@ -60,4 +60,4 @@ def generate_upcoming_payment(account_id: int):
     upcoming_payment = PaymentHistory(account=current_account, timestamp=future_time, amount=amount,
                                       card_number=card_number, card_expiry=card_expiry)
     upcoming_payment_data = PaymentHistorySerializer(upcoming_payment).data
-    return upcoming_payment_data
+    return upcoming_payment_data, interval, current_subscription.expiration

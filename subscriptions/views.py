@@ -20,6 +20,7 @@ class SubscribeView(generics.CreateAPIView):
 
     # add validation logic to create
     # based off this: https://stackoverflow.com/q/45981835
+
     def create(self, request, *args, **kwargs):
         # add code to check if an account with this subscription already exists
         current_account_id = self.request.user.id
@@ -45,7 +46,8 @@ class SubscribeView(generics.CreateAPIView):
         amount = sub_plan.payment
         today = datetime.datetime.combine(datetime.datetime.today(),
                                           datetime.datetime.min.time())
-        PaymentHistory.objects.create(account=current_account, timestamp=today, amount=amount, card_number=card_number, card_expiry=card_expiry)
+        PaymentHistory.objects.create(account=current_account, timestamp=today, amount=amount, card_number=card_number,
+                                      card_expiry=card_expiry)
         return created_subscription
 
 

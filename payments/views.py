@@ -57,7 +57,13 @@ class PaymentUpcomingView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        return_data = generate_upcoming_payment(self.request.user.id)
-        if return_data.get('error') is not None:
-            return Response(return_data, status=400)
+        payment_history_data, interval, end_payment = generate_upcoming_payment(self.request.user.id)
+        if payment_history_data.get('error') is not None:
+            return Response(payment_history_data, status=400)
+        # else create the return data
+        return_data = {"account": payment_history_data.get('account'),
+                       "timestamp": payment_history_data.get('timestamp'), "amount": payment_history_data.get('amount'),
+                       "card_number": payment_history_data.get('card_number'),
+                       "card_expiry": payment_history_data.get('card_expiry'), "recurrence": interval,
+                       "end_payment": end_payment}
         return Response(return_data, status=200)

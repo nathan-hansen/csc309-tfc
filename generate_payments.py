@@ -16,8 +16,8 @@ def generate_payments_today():
     user_queryset = Account.objects.all()
     for user in user_queryset:
         # input the primary key or id of the account
-        response_data = generate_upcoming_payment(user.pk)
-        if response_data.get('account'):
+        response_data = generate_upcoming_payment(user.pk)[0]
+        if response_data.get('account') is not None:
             # should have returned PaymentHistory
             pay_time_str = response_data.get('timestamp')
             # convert datetime string in serialized object to datetime object
