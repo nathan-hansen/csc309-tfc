@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from drf_yasg.utils import swagger_auto_schema
+from drf_yasg import openapi
 from rest_framework.generics import RetrieveAPIView, ListAPIView, CreateAPIView, UpdateAPIView
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from accounts.models import Account
@@ -18,6 +20,7 @@ class SignUpView(APIView):
     permission_classes = (AllowAny,)
     serializer_class = SignupSerializer
 
+    @swagger_auto_schema(request_body=SignupSerializer)
     def post(self, request):
         sign_up_serializer = self.serializer_class(data=request.data)
         sign_up_serializer.is_valid(raise_exception=True)
