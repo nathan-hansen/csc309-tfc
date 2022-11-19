@@ -1,4 +1,6 @@
 from django.shortcuts import get_object_or_404
+from drf_yasg.utils import swagger_auto_schema
+from drf_yasg import openapi
 from django.utils import timezone
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
@@ -41,12 +43,16 @@ class ListMyClassView(generics.ListAPIView):
             order_by('classtime__time')
 
 
+classtime = openapi.Parameter('classtime id', openapi.IN_QUERY, description="Class time", type=openapi.TYPE_STRING)
+user = openapi.Parameter('account id', openapi.IN_QUERY, description="User ID", type=openapi.TYPE_INTEGER)
+op = openapi.Parameter('op', openapi.IN_QUERY, description="Operation: either enroll or drop", type=openapi.TYPE_STRING)
 class ModifyClassView(APIView):
     """
-    Allows a user to enrol or drop a class.
+    Allows a user to enrol or drop a class. You need to login to use this action.
     """
     permission_classes = (IsAuthenticated,)
 
+    @swagger_auto_schema(manual_parameters=[classtime, user, op], operation_description="Enroll or drop a class")
     def post(self, request):
         user = Account.objects.get(id=request.user.id)
         classtime = request.data.get('timeid')
@@ -56,7 +62,7 @@ class ModifyClassView(APIView):
             return Response({'error': 'Missing class or time'}, status=400)
 
         if op not in ['enroll', 'drop']:
-            return Response({'error': 'Invalid op'}, status=400)
+            return Response({'error': 'op must be either enroll or drop'}, status=400)
 
 
         if EnrollClass.check_enroll(user, classtime) and op == 'enroll':
