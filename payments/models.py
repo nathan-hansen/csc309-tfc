@@ -10,7 +10,7 @@ class PaymentInfo(m.Model):
 
 class PaymentHistory(m.Model):
     account = m.ForeignKey('accounts.Account', on_delete=m.CASCADE, related_name='payment_history')
-    timestamp = m.DateTimeField()
+    timestamp = m.DateField()
     amount = m.FloatField()
     card_number = m.CharField(max_length=250)
     card_expiry = m.DateField()

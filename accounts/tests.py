@@ -90,7 +90,7 @@ class AccountTestCase(TestCase):
         access_token = response.data['access']
 
         avatar = open('./tests/wojak.jpg', 'rb')
-        response = self.client.post('/accounts/update/', {
+        response = self.client.put('/accounts/update/', {
             'username': self.username,
             'password': self.password,
             'first_name': 'test',
