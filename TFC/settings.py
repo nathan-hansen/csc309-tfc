@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "payments",
     "subscriptions",
     "rest_framework",
+    "drf_yasg",
 ]
 
 REST_FRAMEWORK = {
