@@ -27,6 +27,12 @@ class Class(m.Model):
             raise ValidationError('Class start date cannot be later than class end date')
 
         return super().clean()
+    
+    def update(self, *args, **kwargs):
+        if 'class_start' in kwargs or 'class_end' in kwargs or 'class_time' in kwargs:
+            self.edit_time()
+
+        return super().update(*args, **kwargs)
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
@@ -57,6 +63,7 @@ class Class(m.Model):
 
         ClassTimeTable.objects.filter(class_id=self, time=time).delete()
         return True
+
 
 class Keywords(m.Model):
     classid = m.ForeignKey('Class', on_delete=m.CASCADE, related_name='keywords')
