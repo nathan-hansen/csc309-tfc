@@ -25,12 +25,9 @@ from drf_yasg import openapi
 # template from https://drf-yasg.readthedocs.io/en/stable/readme.html#quickstart
 schema_view = get_schema_view(
    openapi.Info(
-      title="Snippets API",
+      title="CSC309 TFC Project Backend",
       default_version='v1',
-      description="Test description",
-      terms_of_service="https://www.google.com/policies/terms/",
-      contact=openapi.Contact(email="contact@snippets.local"),
-      license=openapi.License(name="BSD License"),
+      description="Built by Letian Cheng, Nathan Hansen, Edward Leung",
    ),
    public=True,
    permission_classes=[permissions.AllowAny],
