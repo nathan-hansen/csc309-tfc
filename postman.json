@@ -691,8 +691,12 @@
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"classtime\": \"14:00:00\", \r\n    \"op\": \"eiusmod veniam ullamco\"\r\n}"
+						},
 						"url": {
-							"raw": "{{baseUrl}}/classes/modify/?classtime id=eiusmod veniam ullamco&account id=-69603318&op=eiusmod veniam ullamco",
+							"raw": "{{baseUrl}}/classes/modify/",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -700,23 +704,6 @@
 								"classes",
 								"modify",
 								""
-							],
-							"query": [
-								{
-									"key": "classtime id",
-									"value": "eiusmod veniam ullamco",
-									"description": "Class time"
-								},
-								{
-									"key": "account id",
-									"value": "-69603318",
-									"description": "User ID"
-								},
-								{
-									"key": "op",
-									"value": "eiusmod veniam ullamco",
-									"description": "Operation: either enroll or drop"
-								}
 							]
 						},
 						"description": "Enroll or drop a class"
