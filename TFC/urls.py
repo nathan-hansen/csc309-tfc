@@ -22,6 +22,7 @@ from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
 
+# template from https://drf-yasg.readthedocs.io/en/stable/readme.html#quickstart
 schema_view = get_schema_view(
    openapi.Info(
       title="Snippets API",
