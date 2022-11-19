@@ -15,6 +15,16 @@ import datetime
 
 
 class SubscribeView(generics.CreateAPIView):
+    """
+    Allows a user to subscribe. Prerequisites:
+    - This account does not have a subscription 
+    (or a previously cancelled subscription - in which case the UpdateView should instead be used.)
+    - This account has registered payment information
+    
+    This method creates:
+    - a CurrentSubscription entry for this user
+    - an entry in PaymentHistory logging this transaction
+    """
     permission_classes = [IsAuthenticated]
     serializer_class = CurrentSubscriptionSerializer
 
@@ -52,6 +62,10 @@ class SubscribeView(generics.CreateAPIView):
 
 
 class UpdateSubscriptionView(generics.UpdateAPIView):
+    """
+    Allows a user to change their subscription plan to either a) another existing plan, or b) null (a cancellation).
+    If a user changes to a non-null subscription plan, the newer expiry date is used.
+    """
     permission_classes = [IsAuthenticated]
     serializer_class = CurrentSubscriptionSerializer
 
@@ -62,18 +76,3 @@ class UpdateSubscriptionView(generics.UpdateAPIView):
         # use current_account because we only want logged-in user to be able to edit their subscriptions
         return get_object_or_404(CurrentSubscription, account=current_account)
         # will return "Not found" if current subscription does not belong to user
-
-# update above handles cancellations by setting to null.
-# we can optionally reintro this later as a null-only update.
-# class CancelSubscriptionView(generics.UpdateAPIView):
-#     permission_classes = [IsAuthenticated]
-#     serializer_class = CurrentSubscriptionSerializer
-# 
-#     # def get_queryset(self):
-#     #     return CurrentSubscription.objects.filter(account=self.kwargs['pk'], id=self.kwargs['subscription'])
-#     def get_object(self, **kwargs):
-#         current_account = get_object_or_404(Account, id=self.request.user.id)
-#         # use get object or 404 because we are updating specific current subscription with an id and account
-#         # use current_account because we only want logged in user to be able to edit their subscriptions
-#         return get_object_or_404(CurrentSubscription, account=current_account)
-#         # will return "Not found" if current subscription does not belong to user

@@ -11,6 +11,9 @@ from rest_framework import status
 
 # Create your views here.
 class SignUpView(APIView):
+    """
+    Allows a user to register on the website.
+    """
     # reference: https://thinkster.io/tutorials/django-json-api/authentication
     permission_classes = (AllowAny,)
     serializer_class = SignupSerializer
@@ -24,6 +27,9 @@ class SignUpView(APIView):
 
 
 class AccountView(RetrieveAPIView):
+    """
+    View a given account.
+    """
     serializer_class = AccountSerializer
 
     def get_object(self):
@@ -31,6 +37,9 @@ class AccountView(RetrieveAPIView):
 
 
 class AccountUpdateView(UpdateAPIView):
+    """
+    Allows a user to update their account details.
+    """
     permission_classes = [IsAuthenticated]
     # make sure user is logged in
     serializer_class = AccountSerializer

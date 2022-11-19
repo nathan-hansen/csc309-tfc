@@ -16,7 +16,22 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
+from rest_framework import permissions
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
+
+
+# template from https://drf-yasg.readthedocs.io/en/stable/readme.html#quickstart
+schema_view = get_schema_view(
+   openapi.Info(
+      title="CSC309 TFC Project Backend",
+      default_version='v1',
+      description="Built by Letian Cheng, Nathan Hansen, Edward Leung",
+   ),
+   public=True,
+   permission_classes=[permissions.AllowAny],
+)
 
 urlpatterns = [
     path("api-auth/", include("rest_framework.urls")),
@@ -26,6 +41,9 @@ urlpatterns = [
     path('classes/', include('classes.urls')),
     path('payments/', include('payments.urls')),
     path('subscriptions/', include('subscriptions.urls')),
+    re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
+    re_path(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    re_path(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 # add media_URL and MEDIA_ROOT from settings for image urls to work properly
 

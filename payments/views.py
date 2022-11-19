@@ -14,6 +14,9 @@ import datetime
 
 
 class CreatePaymentInfoView(CreateAPIView):
+    """
+    Allows a user to register their credit card details.
+    """
     permission_classes = [IsAuthenticated]
     serializer_class = PaymentInfoSerializer
 
@@ -34,6 +37,9 @@ class CreatePaymentInfoView(CreateAPIView):
 
 
 class PaymentInfoUpdateView(UpdateAPIView):
+    """
+    Allows a user to alter their credit card details.
+    """
     permission_classes = [IsAuthenticated]
     # make sure user is logged in
     serializer_class = PaymentInfoSerializer
@@ -43,6 +49,9 @@ class PaymentInfoUpdateView(UpdateAPIView):
 
 
 class ListPaymentHistory(ListAPIView):
+    """
+    Allows a user to view all their past payments on file.
+    """
     permission_classes = [IsAuthenticated]
     serializer_class = PaymentHistorySerializer
 
@@ -54,6 +63,9 @@ class ListPaymentHistory(ListAPIView):
 
 
 class PaymentUpcomingView(APIView):
+    """
+    Allows a user to view their next upcoming payment, the payment interval, and the end date of the recurrence.
+    """
     permission_classes = [IsAuthenticated]
 
     def get(self, request):

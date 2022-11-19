@@ -12,8 +12,10 @@ from classes.serializers import ClassSerializer, ClassTimeTableSerializer, Enrol
 
 from accounts.models import Account
 
-# Create your views here.
 class ListUpcomingClassView(generics.ListAPIView):
+    """
+    List upcoming classes in a given studio.
+    """
     serializer_class = ClassTimeTableSerializer
     search_fields = ['classid__name', 'classid__coach', 'classid__duration', 'time']
     filterset_fields = search_fields
@@ -26,6 +28,9 @@ class ListUpcomingClassView(generics.ListAPIView):
 
 
 class ListMyClassView(generics.ListAPIView):
+    """
+    Allows a user to view their upcoming enrolled classes in chronological order.
+    """
     permission_classes = (IsAuthenticated,)
     serializer_class = EnrollClassSerializer
 
@@ -37,6 +42,9 @@ class ListMyClassView(generics.ListAPIView):
 
 
 class ModifyClassView(APIView):
+    """
+    Allows a user to enrol or drop a class.
+    """
     permission_classes = (IsAuthenticated,)
 
     def post(self, request):
