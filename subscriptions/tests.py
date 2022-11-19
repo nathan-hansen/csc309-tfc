@@ -24,14 +24,14 @@ class SubscriptionTest(TestCase):
                 payment=random.randint(0, 100),
                 interval=i,
             )
-            for i in ["yearly", "monthly", "weekly", "daily"]
+            for i in ["yearly", "monthly"]
         ]
 
     def test_create_subscription(self):
         # create a subscription
         subscription = SubscriptionPlan.objects.create(
             payment=10.00,
-            interval=random.choice(["monthly", "yearly", "weekly", "daily"]),
+            interval=random.choice(["monthly", "yearly"]),
         )
 
         # check if subscription is created

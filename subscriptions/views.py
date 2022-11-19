@@ -12,6 +12,7 @@ from payments.models import PaymentInfo, PaymentHistory
 from accounts.models import Account
 from rest_framework.response import Response
 import datetime
+from payments.functions import create_payment_history
 
 
 class SubscribeView(generics.CreateAPIView):
@@ -46,25 +47,18 @@ class SubscribeView(generics.CreateAPIView):
             return Response({'error': 'User does not have Payment Info to subscribe'}, status=400)
         # otherwise keep the existing create view api logic
         created_subscription = super(SubscribeView, self).create(request, *args, **kwargs)
+        new_current_sub_plan_id = created_subscription.data.get('plan')
 
         # Create Payment History
-        current_payment_info = get_object_or_404(PaymentInfo, account=current_account)
-        card_number = current_payment_info.card_number
-        card_expiry = current_payment_info.expiry_date
-        new_current_sub_plan_id = created_subscription.data.get('plan')
-        sub_plan = get_object_or_404(SubscriptionPlan, id=new_current_sub_plan_id)
-        amount = sub_plan.payment
-        today = datetime.datetime.combine(datetime.datetime.today(),
-                                          datetime.datetime.min.time())
-        PaymentHistory.objects.create(account=current_account, timestamp=today, amount=amount, card_number=card_number,
-                                      card_expiry=card_expiry)
+        create_payment_history(current_account, new_current_sub_plan_id)
         return created_subscription
 
 
 class UpdateSubscriptionView(generics.UpdateAPIView):
     """
     Allows a user to change their subscription plan to either a) another existing plan, or b) null (a cancellation).
-    If a user changes to a non-null subscription plan, the newer expiry date is used.
+    If a user changes to a non-null subscription plan, the newer expiry date is added to the old one,
+    and a new payment is created to reflect coverage to next expiry date.
     """
     permission_classes = [IsAuthenticated]
     serializer_class = CurrentSubscriptionSerializer
@@ -74,5 +68,9 @@ class UpdateSubscriptionView(generics.UpdateAPIView):
         current_account = get_object_or_404(Account, id=self.request.user.id)
         # use get object or 404 because we are updating specific current subscription with an id and account
         # use current_account because we only want logged-in user to be able to edit their subscriptions
-        return get_object_or_404(CurrentSubscription, account=current_account)
+        current_sub = get_object_or_404(CurrentSubscription, account=current_account)
+        sub_plan_id = self.request.data['plan']
+        if sub_plan_id != "":  # if the user did not unsubscribe, but picked yearly or monthly
+            create_payment_history(current_account, sub_plan_id)
+        return current_sub
         # will return "Not found" if current subscription does not belong to user

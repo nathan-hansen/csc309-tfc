@@ -50,7 +50,7 @@ class PaymentInfoUpdateView(UpdateAPIView):
 
 class ListPaymentHistory(ListAPIView):
     """
-    Allows a user to view all their past payments on file.
+    Allows a user to view all their past payments on file, sorted by recent.
     """
     permission_classes = [IsAuthenticated]
     serializer_class = PaymentHistorySerializer
@@ -64,18 +64,18 @@ class ListPaymentHistory(ListAPIView):
 
 class PaymentUpcomingView(APIView):
     """
-    Allows a user to view their next upcoming payment, the payment interval, and the end date of the recurrence.
+    Allows a user to view their next upcoming payment, and the payment recurrence interval.
+    The next upcoming payment is when the coverage they have already paid for expires
     """
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        payment_history_data, interval, end_payment = generate_upcoming_payment(self.request.user.id)
+        payment_history_data, interval = generate_upcoming_payment(self.request.user.id)
         if payment_history_data.get('error') is not None:
             return Response(payment_history_data, status=400)
         # else create the return data
         return_data = {"account": payment_history_data.get('account'),
                        "timestamp": payment_history_data.get('timestamp'), "amount": payment_history_data.get('amount'),
                        "card_number": payment_history_data.get('card_number'),
-                       "card_expiry": payment_history_data.get('card_expiry'), "recurrence": interval,
-                       "end_payment": end_payment}
+                       "card_expiry": payment_history_data.get('card_expiry'), "recurrence": interval}
         return Response(return_data, status=200)
