@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/usr/bin/bash
 if [ $# -ne 0 ]
 then
     echo "Usage: ./generate_payments.sh no arguments"
