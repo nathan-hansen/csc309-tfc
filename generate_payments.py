@@ -23,9 +23,9 @@ def generate_payments_today():
             # convert datetime string in serialized object to datetime object
             # source: https://stackoverflow.com/a/13182163
             pay_time = datetime.date.fromisoformat(pay_time_str)
-            test_time = pay_time.replace(year=pay_time.year - 1, month=pay_time.month - 1)
+            # test_time = pay_time.replace(month=pay_time.month - 1)
             # in order to compare if payment is due today
-            if test_time == datetime.date.today():  # check if payment time is today
+            if pay_time == datetime.date.today():  # check if payment time is today
                 # deserialize response data and save the PaymentHistory object
                 payment_history = PaymentHistorySerializer(data=response_data)
                 # check if deserialized is valid
