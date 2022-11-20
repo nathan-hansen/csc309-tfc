@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "3f010057-dc49-4124-9e98-07181300afb8",
+		"_postman_id": "8de17d76-54ff-40fa-9d0d-af82041fff8c",
 		"name": "CSC309 TFC Project Backend",
 		"description": "Built by Letian Cheng, Nathan Hansen, Edward Leung",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -1733,7 +1733,14 @@
 		}
 	],
 	"auth": {
-		"type": "bearer"
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
 	},
 	"event": [
 		{
@@ -1763,12 +1770,12 @@
 		},
 		{
 			"key": "latitude",
-			"value": "eiusmod veniam ullamco",
+			"value": "50",
 			"type": "any"
 		},
 		{
 			"key": "longitude",
-			"value": "eiusmod veniam ullamco",
+			"value": "50",
 			"type": "any"
 		},
 		{
