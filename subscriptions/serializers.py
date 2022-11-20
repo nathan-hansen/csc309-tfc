@@ -73,12 +73,12 @@ class CurrentSubscriptionSerializer(ModelSerializer):
         interval = SubscriptionPlan.objects.get(id=validated_data['plan'].pk).interval
         today = datetime.date.today()
         if interval == 'yearly':
-            expiry = today.replace(year=today.year + 1, month=1, day=1)
+            expiry = today.replace(year=today.year + 1)
         elif interval == 'monthly':
             if today.month == 12:
                 expiry = today.replace(year=today.year + 1, month=1, day=1)
             else:
-                expiry = today.replace(month=today.month + 1, day=1)
+                expiry = today.replace(month=today.month + 1)
         else:
             raise ValidationError('invalid interval')
         return CurrentSubscription.objects.create(account=current_account, 
