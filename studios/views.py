@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404
 from rest_framework import generics
 from rest_framework import filters
+from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
 from studios.serializers import (
         StudioSerializer, 
@@ -20,8 +21,13 @@ class ListStudioByProximityView(generics.ListAPIView):
     filterset_fields = ['name', 'amenities__amenity_type', 'tfc_class__name', 'tfc_class__coach']
     search_fields = ['name', 'amenities__amenity_type', 'tfc_class__name', 'tfc_class__coach']
     def get_queryset(self):
-        lat = float(self.kwargs['latitude'])
-        lon = float(self.kwargs['longitude'])
+        try:
+            lat = float(self.kwargs['latitude'])
+            lon = float(self.kwargs['longitude'])
+        except:
+            lat = 0
+            lon = 0
+
 
         queryset = Studio.get_locations_nearby_coords(lat, lon)
 
