@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/bash
 
 python3.10 -m venv env
 source env/bin/activate
