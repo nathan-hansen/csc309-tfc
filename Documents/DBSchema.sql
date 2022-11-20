@@ -2,6 +2,7 @@
 
 table Account [headercolor: #2D6512] {
   id int [pk]
+  username StringField
   first_name StringField
   last_name StringField
   email StringField
@@ -41,13 +42,18 @@ table Class [headercolor: #EB801B] {
   coach StringField
   // keywords type could change...
   // assess during implementation
+  class_start DateField
+  class_end DateField
+  class_time TimeField
   duration DurationField
+  days_inbetween IntegerField
+  spots IntegerField
 }
 Ref: Class.studio > Studio.id
 
 table Keywords [headercolor: #EB801B] {
-  keyword StringField
   classid ForeignKey
+  keyword StringField
 }
 Ref: Keywords.classid > Class.id
 
@@ -102,3 +108,4 @@ table EnrollClass [headercolor: #DE65C3] {
 }
 Ref: EnrollClass.account > Account.id
 Ref: EnrollClass.classtime > ClassTimeTable.id
+
