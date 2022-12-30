@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "8de17d76-54ff-40fa-9d0d-af82041fff8c",
+		"_postman_id": "c505f930-f35b-461a-815a-9c1b5c6b4834",
 		"name": "CSC309 TFC Project Backend",
 		"description": "Built by Letian Cheng, Nathan Hansen, Edward Leung",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -28,7 +28,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"username\": \"cKy2Eid\",\n  \"first_name\": \"incididunt\",\n  \"last_name\": \"consec\",\n  \"email\": \"UtKElrPc@ZHlgiiXGMskzPXkOKGrsLohwhrFr.pyvg\",\n  \"phone_number\": \"+134671078958\"\n}",
+									"raw": "{\n  \"username\": \"username1\",\n  \"first_name\": \"John\",\n  \"last_name\": \"Smith\",\n  \"email\": \"js@email.com\",\n  \"phone_number\": \"1346710758\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -101,8 +101,38 @@
 									}
 								],
 								"body": {
-									"mode": "raw",
-									"raw": "{\n  \"username\": \"cKy2Eid\",\n  \"first_name\": \"incididunt\",\n  \"last_name\": \"consec\",\n  \"email\": \"UtKElrPc@ZHlgiiXGMskzPXkOKGrsLohwhrFr.pyvg\",\n  \"phone_number\": \"+134671078958\"\n}",
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "username",
+											"value": "",
+											"type": "default",
+											"disabled": true
+										},
+										{
+											"key": "first_name",
+											"value": "John",
+											"type": "default"
+										},
+										{
+											"key": "last_name",
+											"value": "",
+											"type": "default",
+											"disabled": true
+										},
+										{
+											"key": "email",
+											"value": "",
+											"type": "default",
+											"disabled": true
+										},
+										{
+											"key": "avatar",
+											"type": "file",
+											"src": [],
+											"disabled": true
+										}
+									],
 									"options": {
 										"raw": {
 											"language": "json"
@@ -268,7 +298,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"username\": \"deserunt cillum\",\n  \"password\": \"eiusmod fugiat\"\n}",
+							"raw": "{\n  \"username\": \"username1\",\n  \"password\": \"password\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -354,7 +384,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"username\": \"0tvR\",\n  \"password\": \"amet tempor ea eiusmod\",\n  \"password2\": \"cillum \",\n  \"first_name\": \"voluptate in\",\n  \"last_name\": \"voluptate labore adipisicing in\",\n  \"email\": \"tUCgSPoU83@TrLl.xbc\",\n  \"phone_number\": \"16224935678\"\n}",
+							"raw": "{\n  \"username\": \"username1\",\n  \"password\": \"password\",\n  \"password2\": \"password\",\n  \"first_name\": \"John\",\n  \"last_name\": \"Smith\",\n  \"email\": \"ja@email.com\",\n  \"phone_number\": \"6224935678\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -511,7 +541,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/classes/{{studio_id}}/schedule/?limit=-69603318&offset=-69603318",
+									"raw": "{{baseUrl}}/classes/{{studio_id}}/schedule/",
 									"host": [
 										"{{baseUrl}}"
 									],
@@ -524,13 +554,15 @@
 									"query": [
 										{
 											"key": "limit",
-											"value": "-69603318",
-											"description": "Number of results to return per page."
+											"value": "4",
+											"description": "Number of results to return per page.",
+											"disabled": true
 										},
 										{
 											"key": "offset",
-											"value": "-69603318",
-											"description": "The initial index from which to return the results."
+											"value": "0",
+											"description": "The initial index from which to return the results.",
+											"disabled": true
 										}
 									]
 								},
@@ -603,7 +635,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/classes/{{studio_id}}/upcoming/?limit=-69603318&offset=-69603318",
+									"raw": "{{baseUrl}}/classes/{{studio_id}}/upcoming/",
 									"host": [
 										"{{baseUrl}}"
 									],
@@ -616,13 +648,40 @@
 									"query": [
 										{
 											"key": "limit",
-											"value": "-69603318",
-											"description": "Number of results to return per page."
+											"value": "4",
+											"description": "Number of results to return per page.",
+											"disabled": true
 										},
 										{
 											"key": "offset",
-											"value": "-69603318",
-											"description": "The initial index from which to return the results."
+											"value": "0",
+											"description": "The initial index from which to return the results.",
+											"disabled": true
+										},
+										{
+											"key": "classid__name",
+											"value": "Martial Arts",
+											"disabled": true
+										},
+										{
+											"key": "classid__coach",
+											"value": "Justin",
+											"disabled": true
+										},
+										{
+											"key": "classid__duration",
+											"value": "2",
+											"disabled": true
+										},
+										{
+											"key": "time",
+											"value": "2023-02-04T15:00:00-05:00",
+											"disabled": true
+										},
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
 										}
 									]
 								},
@@ -693,7 +752,12 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"classtime\": \"14:00:00\", \r\n    \"op\": \"eiusmod veniam ullamco\"\r\n}"
+							"raw": "{\r\n    \"timeid\": \"3\", \r\n    \"op\": \"enroll\"\r\n}\r\n// {\r\n//     \"timeid\": \"3\", \r\n//     \"op\": \"drop\"\r\n// }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
 						"url": {
 							"raw": "{{baseUrl}}/classes/modify/",
@@ -858,7 +922,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"name_on_card\": \"cupidatat adipisicing consequat\",\n  \"card_number\": \"veniam Duis anim eu\",\n  \"cvv\": -91286752,\n  \"expiry_date\": \"2011-11-20\"\n}",
+									"raw": "{\n  \"name_on_card\": \"John Smith\",\n  \"card_number\": \"1234567890111213\",\n  \"cvv\": 787,\n  \"expiry_date\": \"2030-11-20\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -934,7 +998,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name_on_card\": \"cupidatat adipisicing consequat\",\n  \"card_number\": \"veniam Duis anim eu\",\n  \"cvv\": -91286752,\n  \"expiry_date\": \"2011-11-20\"\n}",
+							"raw": "{\n  \"name_on_card\": \"John Smith\",\n  \"card_number\": \"1213141516171819\",\n  \"cvv\": 567,\n  \"expiry_date\": \"2030-11-20\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1003,7 +1067,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{baseUrl}}/payments/history/?limit=-69603318&offset=-69603318",
+							"raw": "{{baseUrl}}/payments/history/",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -1015,13 +1079,15 @@
 							"query": [
 								{
 									"key": "limit",
-									"value": "-69603318",
-									"description": "Number of results to return per page."
+									"value": "3",
+									"description": "Number of results to return per page.",
+									"disabled": true
 								},
 								{
 									"key": "offset",
-									"value": "-69603318",
-									"description": "The initial index from which to return the results."
+									"value": "0",
+									"description": "The initial index from which to return the results.",
+									"disabled": true
 								}
 							]
 						},
@@ -1224,7 +1290,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/studios/{{studio}}/amenities/?limit=-69603318&offset=-69603318",
+									"raw": "{{baseUrl}}/studios/{{studio}}/amenities/",
 									"host": [
 										"{{baseUrl}}"
 									],
@@ -1237,13 +1303,15 @@
 									"query": [
 										{
 											"key": "limit",
-											"value": "-69603318",
-											"description": "Number of results to return per page."
+											"value": "4",
+											"description": "Number of results to return per page.",
+											"disabled": true
 										},
 										{
 											"key": "offset",
-											"value": "-69603318",
-											"description": "The initial index from which to return the results."
+											"value": "0",
+											"description": "The initial index from which to return the results.",
+											"disabled": true
 										}
 									]
 								},
@@ -1319,7 +1387,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/studios/{{studio}}/images/?limit=-69603318&offset=-69603318",
+									"raw": "{{baseUrl}}/studios/{{studio}}/images/",
 									"host": [
 										"{{baseUrl}}"
 									],
@@ -1332,13 +1400,15 @@
 									"query": [
 										{
 											"key": "limit",
-											"value": "-69603318",
-											"description": "Number of results to return per page."
+											"value": "4",
+											"description": "Number of results to return per page.",
+											"disabled": true
 										},
 										{
 											"key": "offset",
-											"value": "-69603318",
-											"description": "The initial index from which to return the results."
+											"value": "0",
+											"description": "The initial index from which to return the results.",
+											"disabled": true
 										}
 									]
 								},
@@ -1416,7 +1486,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{baseUrl}}/studios/list/{{latitude}},{{longitude}}?search=eiusmod veniam ullamco&limit=-69603318&offset=-69603318",
+							"raw": "{{baseUrl}}/studios/list/{{latitude}},{{longitude}}",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -1428,18 +1498,45 @@
 							"query": [
 								{
 									"key": "search",
-									"value": "eiusmod veniam ullamco",
-									"description": "A search term."
+									"value": "stu",
+									"description": "A search term.",
+									"disabled": true
 								},
 								{
 									"key": "limit",
-									"value": "-69603318",
-									"description": "Number of results to return per page."
+									"value": "4",
+									"description": "Number of results to return per page.",
+									"disabled": true
 								},
 								{
 									"key": "offset",
-									"value": "-69603318",
-									"description": "The initial index from which to return the results."
+									"value": "0",
+									"description": "The initial index from which to return the results.",
+									"disabled": true
+								},
+								{
+									"key": "tfc_class__name",
+									"value": "Martial Arts",
+									"description": "For Filtering, needs to be exact match",
+									"disabled": true
+								},
+								{
+									"key": "tfc_class__coach",
+									"value": "Mary",
+									"description": "For Filtering, needs to be exact match",
+									"disabled": true
+								},
+								{
+									"key": "amenities__amenity_type",
+									"value": "Pool",
+									"description": "For Filtering, needs to be exact match",
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": "Studio 1",
+									"description": "For Filtering, needs to be exact match",
+									"disabled": true
 								}
 							]
 						},
@@ -1595,7 +1692,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"plan\": -65348944\n}",
+									"raw": "{\n  \"plan\": 2\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1671,7 +1768,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"plan\": -65348944\n}",
+							"raw": "{\n  \"plan\": 1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
